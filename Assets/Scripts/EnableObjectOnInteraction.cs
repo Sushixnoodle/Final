@@ -42,8 +42,8 @@ public class EnableObjectOnInteraction : MonoBehaviour
                             enabledCount += newState ? 1 : -1; // Update the enabled count
                         }
 
-                        // Check if all three specific interactables are enabled
-                        if (enabledCount == 3)
+                        // Check if all three specific interactables are enabled and NO other interactables are enabled
+                        if (enabledCount == 3 && AreOnlySpecificInteractablesEnabled())
                         {
                             StartCoroutine(HandleObjectTransition(2f, 2.5f)); // Start coroutine with 2s and 2.5s delays
                             enabledCount = 0; // Reset the counter
@@ -64,6 +64,23 @@ public class EnableObjectOnInteraction : MonoBehaviour
                 Debug.Log("Raycast did NOT hit any object.");
             }
         }
+    }
+
+    private bool AreOnlySpecificInteractablesEnabled()
+    {
+        // Check if ONLY the specific interactables are enabled
+        GameObject[] allInteractables = GameObject.FindGameObjectsWithTag(interactableTag);
+        foreach (GameObject interactable in allInteractables)
+        {
+            // If any interactable is enabled and is NOT one of the specific interactables, return false
+            if (interactable.transform.GetChild(0).gameObject.activeSelf &&
+                !System.Array.Exists(specificInteractables, obj => obj == interactable.transform.GetChild(0).gameObject))
+            {
+                Debug.Log("Another interactable is enabled: " + interactable.name);
+                return false;
+            }
+        }
+        return true; // Only specific interactables are enabled
     }
 
     private IEnumerator HandleObjectTransition(float disableDelay, float enableDelay)
