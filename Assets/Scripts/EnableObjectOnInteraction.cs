@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class EnableObjectOnInteraction : MonoBehaviour
 {
@@ -44,8 +45,7 @@ public class EnableObjectOnInteraction : MonoBehaviour
                         // Check if all three specific interactables are enabled
                         if (enabledCount == 3)
                         {
-                            DisableAllInteractables();
-                            EnableNewObjects();
+                            StartCoroutine(HandleObjectTransition(2f, 2.5f)); // Start coroutine with 2s and 2.5s delays
                             enabledCount = 0; // Reset the counter
                         }
                     }
@@ -66,6 +66,17 @@ public class EnableObjectOnInteraction : MonoBehaviour
         }
     }
 
+    private IEnumerator HandleObjectTransition(float disableDelay, float enableDelay)
+    {
+        // Wait for 2 seconds before disabling the previous objects
+        yield return new WaitForSeconds(disableDelay);
+        DisableAllInteractables();
+
+        // Wait for an additional 0.5 seconds (total 2.5 seconds) before enabling the new objects
+        yield return new WaitForSeconds(enableDelay - disableDelay);
+        EnableNewObjects();
+    }
+
     private void DisableAllInteractables()
     {
         GameObject[] interactables = GameObject.FindGameObjectsWithTag(interactableTag);
@@ -73,6 +84,7 @@ public class EnableObjectOnInteraction : MonoBehaviour
         {
             interactable.transform.GetChild(0).gameObject.SetActive(false);
         }
+        Debug.Log("All interactable objects have been disabled.");
     }
 
     private void EnableNewObjects()
@@ -81,5 +93,6 @@ public class EnableObjectOnInteraction : MonoBehaviour
         {
             newObject.SetActive(true);
         }
+        Debug.Log("New objects have been enabled.");
     }
 }
