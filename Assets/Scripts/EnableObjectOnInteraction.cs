@@ -5,6 +5,10 @@ public class EnableObjectOnInteraction : MonoBehaviour
     public string interactableTag = "Interactable"; // Tag for interactable objects
     public Transform player; // Reference to the player's transform
     public float interactionDistance = 3f; // Maximum distance allowed for interaction
+    public GameObject[] specificInteractables; // Array of specific interactable objects to track
+    public GameObject[] newObjectsToEnable; // Array of new objects to enable when condition is met
+
+    private int enabledCount = 0; // Counter for enabled specific interactables
 
     void Update()
     {
@@ -30,6 +34,20 @@ public class EnableObjectOnInteraction : MonoBehaviour
                         targetObject.gameObject.SetActive(newState); // Toggle object state
 
                         Debug.Log("Toggled " + targetObject.name + " to " + newState); // Debug: Show new state
+
+                        // Check if the toggled object is one of the specific interactables
+                        if (System.Array.Exists(specificInteractables, obj => obj == targetObject.gameObject))
+                        {
+                            enabledCount += newState ? 1 : -1; // Update the enabled count
+                        }
+
+                        // Check if all three specific interactables are enabled
+                        if (enabledCount == 3)
+                        {
+                            DisableAllInteractables();
+                            EnableNewObjects();
+                            enabledCount = 0; // Reset the counter
+                        }
                     }
                     else
                     {
@@ -45,6 +63,23 @@ public class EnableObjectOnInteraction : MonoBehaviour
             {
                 Debug.Log("Raycast did NOT hit any object.");
             }
+        }
+    }
+
+    private void DisableAllInteractables()
+    {
+        GameObject[] interactables = GameObject.FindGameObjectsWithTag(interactableTag);
+        foreach (GameObject interactable in interactables)
+        {
+            interactable.transform.GetChild(0).gameObject.SetActive(false);
+        }
+    }
+
+    private void EnableNewObjects()
+    {
+        foreach (GameObject newObject in newObjectsToEnable)
+        {
+            newObject.SetActive(true);
         }
     }
 }
