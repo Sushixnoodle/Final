@@ -9,7 +9,22 @@ public class EnableObjectOnInteraction : MonoBehaviour
     public GameObject[] specificInteractables; // Array of specific interactable objects to track
     public GameObject[] newObjectsToEnable; // Array of new objects to enable when condition is met
 
+    public AudioClip enableSound; // Sound to play when an object is enabled
+    public AudioClip disableSound; // Sound to play when an object is disabled
+    public AudioClip newObjectsSound; // Sound to play when the new objects are enabled
+
+    private AudioSource audioSource; // Reference to the AudioSource component
     private int enabledCount = 0; // Counter for enabled specific interactables
+
+    void Start()
+    {
+        // Get or add an AudioSource component to this GameObject
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+    }
 
     void Update()
     {
@@ -35,6 +50,16 @@ public class EnableObjectOnInteraction : MonoBehaviour
                         targetObject.gameObject.SetActive(newState); // Toggle object state
 
                         Debug.Log("Toggled " + targetObject.name + " to " + newState); // Debug: Show new state
+
+                        // Play sound based on the new state
+                        if (newState)
+                        {
+                            PlaySound(enableSound); // Play enable sound
+                        }
+                        else
+                        {
+                            PlaySound(disableSound); // Play disable sound
+                        }
 
                         // Check if the toggled object is one of the specific interactables
                         if (System.Array.Exists(specificInteractables, obj => obj == targetObject.gameObject))
@@ -92,6 +117,9 @@ public class EnableObjectOnInteraction : MonoBehaviour
         // Wait for an additional 0.5 seconds (total 2.5 seconds) before enabling the new objects
         yield return new WaitForSeconds(enableDelay - disableDelay);
         EnableNewObjects();
+
+        // Play sound when new objects are enabled
+        PlaySound(newObjectsSound);
     }
 
     private void DisableAllInteractables()
@@ -111,5 +139,13 @@ public class EnableObjectOnInteraction : MonoBehaviour
             newObject.SetActive(true);
         }
         Debug.Log("New objects have been enabled.");
+    }
+
+    private void PlaySound(AudioClip clip)
+    {
+        if (clip != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(clip); // Play the specified sound
+        }
     }
 }
