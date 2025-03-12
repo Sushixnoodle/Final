@@ -1,5 +1,7 @@
 using UnityEngine;
 using System.Collections;
+using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EnableObjectOnInteraction : MonoBehaviour
 {
@@ -120,6 +122,12 @@ public class EnableObjectOnInteraction : MonoBehaviour
 
         // Play sound when new objects are enabled
         PlaySound(newObjectsSound);
+
+        // Wait for 4 seconds after enabling the new objects
+        yield return new WaitForSeconds(4f);
+
+        // Change the scene
+        ChangeScene();
     }
 
     private void DisableAllInteractables()
@@ -147,5 +155,12 @@ public class EnableObjectOnInteraction : MonoBehaviour
         {
             audioSource.PlayOneShot(clip); // Play the specified sound
         }
+    }
+
+    private void ChangeScene()
+    {
+
+        SceneManager.LoadScene("AfterTorch");
+      //Debug.Log("Scene changed to: YourSceneName");
     }
 }
