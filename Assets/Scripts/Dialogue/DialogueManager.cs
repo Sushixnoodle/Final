@@ -1,21 +1,35 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
-    public Text speakerNameText;
-    public Text dialogueText;
+    public TextMeshProUGUI speakerNameText;
+    public TextMeshProUGUI dialogueText;
     public GameObject choicePanel;
     public Button choiceButtonPrefab;
+    public GameObject dialoguePanel;
 
     private Dialogue currentDialogue;
     private int currentLineIndex;
+    private bool isWaitingForClick; // Track if we're waiting for a click to continue
 
     public void StartDialogue(Dialogue dialogue)
     {
         currentDialogue = dialogue;
         currentLineIndex = 0;
+        dialoguePanel.SetActive(true); // Enable the panel
+        isWaitingForClick = false; // Reset click state
         ShowDialogueLine();
+    }
+
+    private void Update()
+    {
+        // Check for mouse click (or touch) to continue dialogue
+        if (isWaitingForClick && Input.GetMouseButtonDown(0)) // Left mouse button or touch
+        {
+            NextLine();
+        }
     }
 
     private void ShowDialogueLine()
@@ -35,11 +49,17 @@ public class DialogueManager : MonoBehaviour
         {
             for (int i = 0; i < line.choices.Length; i++)
             {
+                // Instantiate a new button for each choice
                 Button choiceButton = Instantiate(choiceButtonPrefab, choicePanel.transform);
-                choiceButton.GetComponentInChildren<Text>().text = line.choices[i];
+                TextMeshProUGUI choiceText = choiceButton.GetComponentInChildren<TextMeshProUGUI>();
+                choiceText.text = line.choices[i];
                 int choiceIndex = i; // Capture the index for the listener
                 choiceButton.onClick.AddListener(() => OnChoiceSelected(choiceIndex));
             }
+        }
+        else
+        {
+            isWaitingForClick = true; // Wait for click to continue
         }
     }
 
@@ -59,9 +79,23 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private void NextLine()
+    {
+        if (currentLineIndex < currentDialogue.dialogueLines.Length - 1)
+        {
+            currentLineIndex++; // Move to the next line
+            ShowDialogueLine();
+        }
+        else
+        {
+            EndDialogue(); // End dialogue if there are no more lines
+        }
+    }
+
     private void EndDialogue()
     {
         Debug.Log("Dialogue ended.");
-        // Clean up or close the dialogue UI
+        dialoguePanel.SetActive(false); // Disable the panel
+        isWaitingForClick = false; // Reset click state
     }
 }
