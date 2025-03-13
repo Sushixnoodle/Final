@@ -123,8 +123,8 @@ public class EnableObjectOnInteraction : MonoBehaviour
         // Play sound when new objects are enabled
         PlaySound(newObjectsSound);
 
-        // Wait for 4 seconds after enabling the new objects
-        yield return new WaitForSeconds(2.5f);
+        // Wait for x seconds after enabling the new objects
+        yield return new WaitForSeconds(1.5f);
 
         // Change the scene
         ChangeScene();
