@@ -15,43 +15,20 @@ MonoBehaviour:
   dialogueLines:
   - speakerName: Lord
     dialogueText: SON!
-    choices: []
-    nextLines: ffffffff
-  - speakerName: Son
-    dialogueText: Yes father
-    choices: []
-    nextLines: ffffffff
-  - speakerName: Lord
-    dialogueText: Is this COLOUR I am seeing right now?!
     choices:
-    - I think so
-    - Well what do you think
+    - Yes Father
+    - wot
     nextLines: 0100000002000000
   - speakerName: Lord
-    dialogueText: For once you are doing something right with your life
+    dialogueText: 'Is this COLOUR I see?! '
     choices:
-    - ...
-    - Eye Rolls
-    nextLines: 0300000004000000
+    - I think so
+    nextLines: 03000000
   - speakerName: Lord
-    dialogueText: DO NOT SPEAK TO YOUR FATHER LIKE THAT
+    dialogueText: 'DONT SPEAK TO YOUR FATHER LIKE THAT '
     choices: []
-    nextLines: ffffffff
+    nextLines: 03000000
   - speakerName: Lord
-    dialogueText: 'ARE YOU SLEEPING! why are your eyes rolled so back into your head '
-    choices: []
-    nextLines: 05000000
-  - speakerName: Lord
-    dialogueText: 'Continue what you are doing and create great results '
-    choices:
-    - Yes father
-    - Alright man
-    nextLines: 0600000007000000
-  - speakerName: Lord
-    dialogueText: Go on now
-    choices: []
-    nextLines: ffffffff
-  - speakerName: Lord
-    dialogueText: And WATCH your language when you speak to me young boy
+    dialogueText: Doing something good for once
     choices: []
     nextLines: ffffffff
