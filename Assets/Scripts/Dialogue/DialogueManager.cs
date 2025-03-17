@@ -21,6 +21,18 @@ public class DialogueManager : MonoBehaviour
     private bool isWaitingForClick; // Track if we're waiting for a click to continue
     private bool isTextAnimating; // Track if text is currently animating
 
+    private void Start()
+    {
+        Dialogue dialogue = SceneTransitionManager.Instance.GetSelectedDialogue();
+        if (dialogue != null)
+        {
+            StartDialogue(dialogue); // Start the dialogue
+        }
+        else
+        {
+            Debug.LogError("No dialogue asset was passed to the dialogue scene.");
+        }
+    }
     private void Awake()
     {
         // Singleton pattern to ensure only one instance exists

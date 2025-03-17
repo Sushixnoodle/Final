@@ -5,12 +5,12 @@ public class EnableMouseCursor : MonoBehaviour
     void Start()
     {
         // Enable the mouse cursor when the game starts
-        EnableCursor();
+      //  EnableCursor();
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
 
-    void EnableCursor()
+  /*  void EnableCursor()
     {
         // Make the mouse cursor visible
         Cursor.visible = true;
@@ -18,5 +18,5 @@ public class EnableMouseCursor : MonoBehaviour
         // Unlock the cursor so it can move freely
         Cursor.lockState = CursorLockMode.None;
     }
-
+  */
 }
