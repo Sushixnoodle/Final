@@ -14,7 +14,7 @@ public class DialogueManager : MonoBehaviour
     public Button choiceButton2; // Assign in Inspector
     public GameObject dialoguePanel;
 
-    [SerializeField] private float textSpeed = 0.03f; // Speed of text animation (adjust in Inspector)
+    [SerializeField] private float textSpeed = 0.05f; // Speed of text animation (adjust in Inspector)
 
     private Dialogue currentDialogue;
     private int currentLineIndex;
