@@ -119611,6 +119611,7 @@ GameObject:
   - component: {fileID: 1568066580}
   - component: {fileID: 1568066579}
   - component: {fileID: 1568066578}
+  - component: {fileID: 1568066581}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -119648,6 +119649,7 @@ MonoBehaviour:
   choiceButton1: {fileID: 74788164}
   choiceButton2: {fileID: 1790166077}
   dialoguePanel: {fileID: 1622100871}
+  textSpeed: 0.05
 --- !u!4 &1568066580
 Transform:
   m_ObjectHideFlags: 0
@@ -119663,6 +119665,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1568066581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568066577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 366182f03f439b74891af657e02ee2cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1581724846
 GameObject:
   m_ObjectHideFlags: 0
