@@ -44,15 +44,21 @@ public class DialogueManager : MonoBehaviour
         // Check for mouse click (or touch) to continue dialogue
         if (isWaitingForClick && Input.GetMouseButtonDown(0)) // Left mouse button or touch
         {
-            if (currentLineIndex == currentDialogue.dialogueLines.Length - 1)
+            DialogueLine line = currentDialogue.dialogueLines[currentLineIndex];
+
+            if (line.choices == null || line.choices.Length == 0)
             {
-                // If this is the last line, go to the next scene
-                GoToNextScene();
-            }
-            else
-            {
-                // Otherwise, proceed to the next line
-                NextLine();
+                // If there are no choices, use the nextLineIndex
+                if (line.nextLineIndex >= 0 && line.nextLineIndex < currentDialogue.dialogueLines.Length)
+                {
+                    currentLineIndex = line.nextLineIndex; // Move to the specified next line
+                    ShowDialogueLine();
+                }
+                else
+                {
+                    // If nextLineIndex is invalid, end the dialogue
+                    EndDialogue();
+                }
             }
         }
     }
@@ -184,6 +190,9 @@ public class DialogueManager : MonoBehaviour
         {
             dialoguePanel.SetActive(false); // Disable the panel
         }
+
+        // Transition to the next scene
+        GoToNextScene();
     }
 
     private void GoToNextScene()

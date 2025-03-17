@@ -17,18 +17,95 @@ MonoBehaviour:
     dialogueText: SON!
     choices:
     - Yes Father
-    - wot
-    nextLines: 0100000002000000
+    nextLines: 01000000
+    nextLineIndex: -1
   - speakerName: Lord
-    dialogueText: 'Is this COLOUR I see?! '
+    dialogueText: Is this COLOUR!?!? I see
     choices:
     - I think so
-    nextLines: 03000000
+    - Well what do you think
+    nextLines: 0200000003000000
+    nextLineIndex: -1
   - speakerName: Lord
-    dialogueText: 'DONT SPEAK TO YOUR FATHER LIKE THAT '
+    dialogueText: For a long time I had thought colours were rumours
     choices: []
-    nextLines: 03000000
+    nextLines: 04000000
+    nextLineIndex: 4
   - speakerName: Lord
-    dialogueText: Doing something good for once
+    dialogueText: DO NOT SPEAK TO YOUR FATHER LIKE THAT
+    choices: []
+    nextLines: 05000000
+    nextLineIndex: 5
+  - speakerName: Lord
+    dialogueText: And now I am starting to see the world in a different light
+    choices: []
+    nextLines: 07000000
+    nextLineIndex: 7
+  - speakerName: Lord
+    dialogueText: 'Let us put your horrible attitude to the side '
+    choices:
+    - Wonder where I get it from
+    - Is there something you need to say to me?
+    nextLines: 0600000002000000
+    nextLineIndex: -1
+  - speakerName: Lord
+    dialogueText: STOP THIS RIGHT NOW...... as I was saying
+    choices: []
+    nextLines: 02000000
+    nextLineIndex: 2
+  - speakerName: Your own thoughts
+    dialogueText: Wait I think these colours are helping my fathers to be softer
+    choices: []
+    nextLines: 08000000
+    nextLineIndex: 8
+  - speakerName: Lord
+    dialogueText: I wonder what has caused this
+    choices:
+    - It was me
+    - ...
+    nextLines: 090000000a000000
+    nextLineIndex: -1
+  - speakerName: Lord
+    dialogueText: It was YOU?!
+    choices: []
+    nextLines: 0b000000
+    nextLineIndex: 11
+  - speakerName: Lord
+    dialogueText: Was it you?
+    choices:
+    - Yes father
+    - No
+    nextLines: 090000000c000000
+    nextLineIndex: -1
+  - speakerName: Lord
+    dialogueText: 'For once you are doing a good job '
+    choices: []
+    nextLines: 0d000000
+    nextLineIndex: 13
+  - speakerName: Lord
+    dialogueText: Well whatever it is is really doing a good job
+    choices: []
+    nextLines: 0d000000
+    nextLineIndex: 13
+  - speakerName: Your own thoughts
+    dialogueText: Im determined to help my father and recover our relationship
+    choices: []
+    nextLines: 0e000000
+    nextLineIndex: 14
+  - speakerName: Lord
+    dialogueText: I heard some noise in the sewer systems did you
+    choices:
+    - ???
+    - Maybe it was the result of you using the bathroom
+    nextLines: 0f00000010000000
+    nextLineIndex: -1
+  - speakerName: Lord
+    dialogueText: Yeah something might be going on there...
     choices: []
     nextLines: ffffffff
+    nextLineIndex: -1
+  - speakerName: Lord
+    dialogueText: GET OUT OF MY SIGHT!!!
+    choices: []
+    nextLines: ffffffff
+    nextLineIndex: -1
