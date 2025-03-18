@@ -320,7 +320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &74788163
 RectTransform:
   m_ObjectHideFlags: 0
@@ -25752,7 +25752,6 @@ GameObject:
   m_Component:
   - component: {fileID: 568788519}
   - component: {fileID: 568788518}
-  - component: {fileID: 568788517}
   - component: {fileID: 568788516}
   m_Layer: 0
   m_Name: TablePlaceholder
@@ -25776,19 +25775,6 @@ MonoBehaviour:
   player: {fileID: 1261005103}
   activationDistance: 4.21
   sceneName: LordsCut
---- !u!114 &568788517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 568788515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d68267b2eaad5a64cba530d73a5b206f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 0}
 --- !u!65 &568788518
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -60189,7 +60175,7 @@ GameObject:
   m_Component:
   - component: {fileID: 993287689}
   - component: {fileID: 993287688}
-  - component: {fileID: 993287687}
+  - component: {fileID: 993287690}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -60197,18 +60183,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &993287687
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 993287686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c2d5c8193c3856b448df5e6956f9a139, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &993287688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -60240,6 +60214,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &993287690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 993287686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 366182f03f439b74891af657e02ee2cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1099783189
 GameObject:
   m_ObjectHideFlags: 0
@@ -99876,8 +99862,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 35.3
+  m_fontSizeBase: 35.3
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -119609,8 +119595,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1568066580}
-  - component: {fileID: 1568066579}
-  - component: {fileID: 1568066578}
   - component: {fileID: 1568066581}
   m_Layer: 0
   m_Name: DialogueManager
@@ -119619,37 +119603,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1568066578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1568066577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d68267b2eaad5a64cba530d73a5b206f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: ad5b7e642aa50d54b8eab44b3ce57524, type: 2}
---- !u!114 &1568066579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1568066577}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a55d58c183fb4d4e89222e868d8424f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speakerNameText: {fileID: 982213822}
-  dialogueText: {fileID: 1389064539}
-  choiceButton1: {fileID: 74788164}
-  choiceButton2: {fileID: 1790166077}
-  dialoguePanel: {fileID: 1622100871}
-  textSpeed: 0.05
 --- !u!4 &1568066580
 Transform:
   m_ObjectHideFlags: 0
@@ -119674,9 +119627,80 @@ MonoBehaviour:
   m_GameObject: {fileID: 1568066577}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 366182f03f439b74891af657e02ee2cc, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a55d58c183fb4d4e89222e868d8424f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialoguePanel: {fileID: 1622100871}
+  nameText: {fileID: 982213822}
+  dialogueText: {fileID: 1389064539}
+  characterOneFont: {fileID: 11400000, guid: 58a462d8305080048a8131afc18b7601, type: 2}
+  characterTwoFont: {fileID: 11400000, guid: 55d364c7b56fa334493dd324574bbfa1, type: 2}
+  characterOneFontSize: 59
+  characterTwoFontSize: 39
+  dialogueLines:
+  - characterName: Lord
+    dialogueText: Son!
+    isCharacterOne: 1
+  - characterName: Son
+    dialogueText: Yes father
+    isCharacterOne: 1
+  - characterName: Lord
+    dialogueText: Is this COLOUR!?!? I see
+    isCharacterOne: 1
+  - characterName: Son
+    dialogueText: I think
+    isCharacterOne: 1
+  - characterName: Lord
+    dialogueText: YOU THINK?!?! How unintelligent must one be!
+    isCharacterOne: 1
+  - characterName: Lord
+    dialogueText: Putting your horrible IQ to the side...
+    isCharacterOne: 1
+  - characterName: Lord
+    dialogueText: For a long time, I had thought colours were rumours
+    isCharacterOne: 1
+  - characterName: Lord
+    dialogueText: 'And now I am seeing the world in a different light '
+    isCharacterOne: 1
+  - characterName: Your own thoughts
+    dialogueText: Wait I think these colours are helping father
+    isCharacterOne: 0
+  - characterName: Lord
+    dialogueText: Was it you? The one who caused this
+    isCharacterOne: 1
+  - characterName: Your own thoughts
+    dialogueText: I am determined to help my father and recover our relationship
+    isCharacterOne: 0
+  - characterName: Son
+    dialogueText: Yes! It was me
+    isCharacterOne: 1
+  - characterName: Lord
+    dialogueText: YOU?!?!
+    isCharacterOne: 1
+  - characterName: Lord
+    dialogueText: HA HA HA, do not lie child. That is the most humourous thing you
+      have ever said
+    isCharacterOne: 1
+  - characterName: Lord
+    dialogueText: that was a joke...there is no way you would be capable of this
+    isCharacterOne: 1
+  - characterName: Your own thoughts
+    dialogueText: If I can restore the colours of the land I think I can restore
+      his kindness too
+    isCharacterOne: 0
+  - characterName: Lord
+    dialogueText: Also
+    isCharacterOne: 1
+  - characterName: Lord
+    dialogueText: Earlier I had heard some noise in the sewer systems did you?
+    isCharacterOne: 1
+  - characterName: Son
+    dialogueText: Maybe it was the result of you using the bathroom?
+    isCharacterOne: 1
+  - characterName: Lord
+    dialogueText: GET OUT OF MY SIGHT
+    isCharacterOne: 1
+  nextSceneName: AfterLord
 --- !u!1 &1581724846
 GameObject:
   m_ObjectHideFlags: 0
@@ -129666,7 +129690,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1790166077
 MonoBehaviour:
   m_ObjectHideFlags: 0

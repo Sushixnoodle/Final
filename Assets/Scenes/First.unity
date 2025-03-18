@@ -24537,7 +24537,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &154702577
 RectTransform:
   m_ObjectHideFlags: 0
@@ -99409,7 +99409,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d68267b2eaad5a64cba530d73a5b206f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 0}
 --- !u!1 &1343709540
 GameObject:
   m_ObjectHideFlags: 0
@@ -104308,7 +104307,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1386517965
 RectTransform:
   m_ObjectHideFlags: 0
@@ -104558,7 +104557,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1403066727}
   - component: {fileID: 1403066726}
-  - component: {fileID: 1403066725}
+  - component: {fileID: 1403066728}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -104566,19 +104565,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1403066725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1403066724}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d68267b2eaad5a64cba530d73a5b206f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dialogue: {fileID: 11400000, guid: 8b4c60d60e1423f4d809f63102b2008e, type: 2}
 --- !u!114 &1403066726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -104591,12 +104577,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a55d58c183fb4d4e89222e868d8424f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speakerNameText: {fileID: 1236632557}
-  dialogueText: {fileID: 768850550}
-  choiceButton1: {fileID: 154702578}
-  choiceButton2: {fileID: 1386517966}
   dialoguePanel: {fileID: 367983432}
-  textSpeed: 0.05
+  nameText: {fileID: 1236632557}
+  dialogueText: {fileID: 768850550}
+  characterOneFont: {fileID: 11400000, guid: 58a462d8305080048a8131afc18b7601, type: 2}
+  characterTwoFont: {fileID: 11400000, guid: 58a462d8305080048a8131afc18b7601, type: 2}
+  characterOneFontSize: 59
+  characterTwoFontSize: 36
+  dialogueLines:
+  - characterName: Lord
+    dialogueText: 'I wonder why I still have a pitiful son like you '
+    isCharacterOne: 1
+  - characterName: Lord
+    dialogueText: Anyways everything is all wrapped up now...
+    isCharacterOne: 1
+  - characterName: Lord
+    dialogueText: You have no use to me
+    isCharacterOne: 1
+  - characterName: Lord
+    dialogueText: Go to bed.
+    isCharacterOne: 1
+  - characterName: 
+    dialogueText: '[You roll your eyes]'
+    isCharacterOne: 0
+  - characterName: Lord
+    dialogueText: DO NOT ROLL YOUR EYES AT ME
+    isCharacterOne: 1
+  - characterName: Lord
+    dialogueText: Off you go.
+    isCharacterOne: 1
+  nextSceneName: TorchPuzzle
 --- !u!4 &1403066727
 Transform:
   m_ObjectHideFlags: 0
@@ -104612,6 +104622,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1403066728
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1403066724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 366182f03f439b74891af657e02ee2cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1409629133
 GameObject:
   m_ObjectHideFlags: 0
