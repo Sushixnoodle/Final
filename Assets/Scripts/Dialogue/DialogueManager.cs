@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 [System.Serializable]
 public class DialogueLine
@@ -29,8 +30,10 @@ public class DialogueManager : MonoBehaviour
     [Header("Dialogue Settings")]
     public DialogueLine[] dialogueLines; // Array of dialogue lines
     public string nextSceneName; // Scene to load after dialogue
+    public float textSpeed = 0.05f; // Speed of the typewriter effect
 
     private int currentLineIndex = 0;
+    private bool isTyping = false;
 
     void Start()
     {
@@ -42,7 +45,17 @@ public class DialogueManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) // Click to progress
         {
-            ShowNextLine();
+            if (isTyping)
+            {
+                // If the text is still typing, skip to the end
+                StopAllCoroutines();
+                dialogueText.text = dialogueLines[currentLineIndex - 1].dialogueText;
+                isTyping = false;
+            }
+            else
+            {
+                ShowNextLine();
+            }
         }
     }
 
@@ -52,7 +65,6 @@ public class DialogueManager : MonoBehaviour
         {
             DialogueLine line = dialogueLines[currentLineIndex];
             nameText.text = line.characterName;
-            dialogueText.text = line.dialogueText;
 
             // Set font and font size for the character's name only
             if (line.isCharacterOne)
@@ -66,12 +78,25 @@ public class DialogueManager : MonoBehaviour
                 nameText.fontSize = characterTwoFontSize;
             }
 
+            StartCoroutine(TypeText(line.dialogueText));
             currentLineIndex++;
         }
         else
         {
             EndDialogue();
         }
+    }
+
+    IEnumerator TypeText(string text)
+    {
+        isTyping = true;
+        dialogueText.text = ""; // Clear the text before starting the typewriter effect
+        foreach (char letter in text.ToCharArray())
+        {
+            dialogueText.text += letter;
+            yield return new WaitForSeconds(textSpeed); // Wait before showing the next character
+        }
+        isTyping = false;
     }
 
     void EndDialogue()

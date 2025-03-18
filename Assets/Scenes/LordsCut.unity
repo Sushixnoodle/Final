@@ -119648,7 +119648,7 @@ MonoBehaviour:
     dialogueText: Is this COLOUR!?!? I see
     isCharacterOne: 1
   - characterName: Son
-    dialogueText: I think
+    dialogueText: I think so
     isCharacterOne: 1
   - characterName: Lord
     dialogueText: YOU THINK?!?! How unintelligent must one be!
@@ -119701,6 +119701,7 @@ MonoBehaviour:
     dialogueText: GET OUT OF MY SIGHT
     isCharacterOne: 1
   nextSceneName: AfterLord
+  textSpeed: 0.05
 --- !u!1 &1581724846
 GameObject:
   m_ObjectHideFlags: 0
