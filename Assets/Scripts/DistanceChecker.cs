@@ -1,41 +1,40 @@
+using TMPro;
 using UnityEngine;
-using TMPro; // Add this namespace for TextMeshPro
 
 public class DistanceChecker : MonoBehaviour
 {
-    public GameObject partNameText; // The UI or 3D text to show/hide
-    public Transform player; // Reference to the player or object to measure distance to
-    public float activationDistance = 5f; // Distance at which the text appears
+    public TextMeshProUGUI uiText; // Assign the TextMeshPro UI Text in the inspector
+    public float interactionDistance = 3f; // Distance within which interaction is possible
+    private bool isTextActive = false;
 
-    private void Start()
+    void Update()
     {
-        // Ensure the text is hidden at the start
-        if (partNameText != null)
+        CheckDistance();
+    }
+
+    void CheckDistance()
+    {
+        // Check distance between player and this object
+        float distance = Vector3.Distance(transform.position, Camera.main.transform.position);
+        if (distance <= interactionDistance && !isTextActive)
         {
-            partNameText.SetActive(false);
+            ShowText();
+        }
+        else if (distance > interactionDistance && isTextActive)
+        {
+            HideText();
         }
     }
 
-    private void Update()
+    void ShowText()
     {
-        // Check if the player reference is set
-        if (player == null)
-        {
-            Debug.LogWarning("Player reference is not set.");
-            return;
-        }
+        isTextActive = true;
+        uiText.gameObject.SetActive(true);
+    }
 
-        // Calculate the distance between this object and the player
-        float distance = Vector3.Distance(transform.position, player.position);
-
-        // Show or hide the text based on the distance
-        if (distance <= activationDistance)
-        {
-            partNameText.SetActive(true);
-        }
-        else
-        {
-            partNameText.SetActive(false);
-        }
+    void HideText()
+    {
+        isTextActive = false;
+        uiText.gameObject.SetActive(false);
     }
 }
