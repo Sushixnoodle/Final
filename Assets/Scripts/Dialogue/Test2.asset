@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1135fa4f16091604ab142607e0e00c8d, type: 3}
+  m_Name: Test2
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - speakerName: Lord
+    dialogueText: SON!
+    choices:
+    - Yes father
+    nextLines: 01000000
+    nextLineIndex: -1
+  - speakerName: Lord
+    dialogueText: Is this COLOUR!?!? I see
+    choices:
+    - I think so
+    - Well what do you think
+    nextLines: 0200000003000000
+    nextLineIndex: -1
+  - speakerName: Lord
+    dialogueText: For a long time I had thought colours were rumours
+    choices: []
+    nextLines: 04000000
+    nextLineIndex: 4
+  - speakerName: Lord
+    dialogueText: DO NOT SPEAK TO YOUR FATHER LIKE THAT
+    choices: []
+    nextLines: 05000000
+    nextLineIndex: 5
+  - speakerName: Lord
+    dialogueText: And now I am starting to see the world in a different light
+    choices: []
+    nextLines: 07000000
+    nextLineIndex: 7
+  - speakerName: Lord
+    dialogueText: Let us put your horrible attitude to the side
+    choices:
+    - I wonder where I get it from
+    - Is there something you need to say to me?
+    nextLines: 0600000003000000
+    nextLineIndex: -1
+  - speakerName: Lord
+    dialogueText: STOP THIS RIGHT NOW....... as I was saying
+    choices: []
+    nextLines: 08000000
+    nextLineIndex: 8
+  - speakerName: Your own thoughts
+    dialogueText: Wait I think these colours are helping my fathers to be softer
+    choices: []
+    nextLines: 08000000
+    nextLineIndex: 8
