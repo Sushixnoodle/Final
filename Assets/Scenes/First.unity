@@ -99515,7 +99515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d68267b2eaad5a64cba530d73a5b206f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 11400000, guid: 4915d8985e28a9c40be57762bd4b2771, type: 2}
 --- !u!1 &1343709540
 GameObject:
   m_ObjectHideFlags: 0
@@ -104729,7 +104729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d68267b2eaad5a64cba530d73a5b206f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogue: {fileID: 0}
+  dialogue: {fileID: 11400000, guid: 4915d8985e28a9c40be57762bd4b2771, type: 2}
 --- !u!1 &1409629133
 GameObject:
   m_ObjectHideFlags: 0

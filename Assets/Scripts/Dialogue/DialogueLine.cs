@@ -10,11 +10,3 @@ public class DialogueLine
     public int[] nextLines; // Array of next line indices for each choice
     public int nextLineIndex = -1; // Default next line index (use -1 to indicate no next line)
 }
-
-[CreateAssetMenu(fileName = "New Dialogue", menuName = "Dialogue")]
-public class Dialogue : ScriptableObject
-{
-    public DialogueLine[] dialogueLines;
-}
-
-
