@@ -320,7 +320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &74788163
 RectTransform:
   m_ObjectHideFlags: 0
@@ -119596,6 +119596,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1568066580}
   - component: {fileID: 1568066581}
+  - component: {fileID: 1568066582}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -119630,78 +119631,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a55d58c183fb4d4e89222e868d8424f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialoguePanel: {fileID: 1622100871}
-  nameText: {fileID: 982213822}
+  speakerNameText: {fileID: 982213822}
   dialogueText: {fileID: 1389064539}
-  characterOneFont: {fileID: 11400000, guid: 58a462d8305080048a8131afc18b7601, type: 2}
-  characterTwoFont: {fileID: 11400000, guid: 55d364c7b56fa334493dd324574bbfa1, type: 2}
-  characterOneFontSize: 59
-  characterTwoFontSize: 39
-  dialogueLines:
-  - characterName: Lord
-    dialogueText: Son!
-    isCharacterOne: 1
-  - characterName: Son
-    dialogueText: Yes father
-    isCharacterOne: 1
-  - characterName: Lord
-    dialogueText: Is this COLOUR!?!? I see
-    isCharacterOne: 1
-  - characterName: Son
-    dialogueText: I think so
-    isCharacterOne: 1
-  - characterName: Lord
-    dialogueText: YOU THINK?!?! How unintelligent must one be!
-    isCharacterOne: 1
-  - characterName: Lord
-    dialogueText: Putting your horrible IQ to the side...
-    isCharacterOne: 1
-  - characterName: Lord
-    dialogueText: For a long time, I had thought colours were rumours
-    isCharacterOne: 1
-  - characterName: Lord
-    dialogueText: 'And now I am seeing the world in a different light '
-    isCharacterOne: 1
-  - characterName: Your own thoughts
-    dialogueText: Wait I think these colours are helping father
-    isCharacterOne: 0
-  - characterName: Lord
-    dialogueText: Was it you? The one who caused this
-    isCharacterOne: 1
-  - characterName: Your own thoughts
-    dialogueText: I am determined to help my father and recover our relationship
-    isCharacterOne: 0
-  - characterName: Son
-    dialogueText: Yes! It was me
-    isCharacterOne: 1
-  - characterName: Lord
-    dialogueText: YOU?!?!
-    isCharacterOne: 1
-  - characterName: Lord
-    dialogueText: HA HA HA, do not lie child. That is the most humourous thing you
-      have ever said
-    isCharacterOne: 1
-  - characterName: Lord
-    dialogueText: that was a joke...there is no way you would be capable of this
-    isCharacterOne: 1
-  - characterName: Your own thoughts
-    dialogueText: If I can restore the colours of the land I think I can restore
-      his kindness too
-    isCharacterOne: 0
-  - characterName: Lord
-    dialogueText: Also
-    isCharacterOne: 1
-  - characterName: Lord
-    dialogueText: Earlier I had heard some noise in the sewer systems did you?
-    isCharacterOne: 1
-  - characterName: Son
-    dialogueText: Maybe it was the result of you using the bathroom?
-    isCharacterOne: 1
-  - characterName: Lord
-    dialogueText: GET OUT OF MY SIGHT
-    isCharacterOne: 1
-  nextSceneName: AfterLord
-  textSpeed: 0.05
+  choiceButton1: {fileID: 74788164}
+  choiceButton2: {fileID: 1790166077}
+  dialoguePanel: {fileID: 1622100871}
+--- !u!114 &1568066582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568066577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d68267b2eaad5a64cba530d73a5b206f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogue: {fileID: 11400000, guid: ad5b7e642aa50d54b8eab44b3ce57524, type: 2}
 --- !u!1 &1581724846
 GameObject:
   m_ObjectHideFlags: 0
@@ -129691,7 +129638,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1790166077
 MonoBehaviour:
   m_ObjectHideFlags: 0

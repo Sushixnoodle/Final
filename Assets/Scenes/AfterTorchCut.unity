@@ -54205,9 +54205,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d0782bce9ec838479367c70da85e8cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  partNameText: {fileID: 1160659414}
-  player: {fileID: 1814793205}
-  activationDistance: 6
+  uiText: {fileID: 1160659416}
+  interactionDistance: 5.85
 --- !u!1 &741754410
 GameObject:
   m_ObjectHideFlags: 0
