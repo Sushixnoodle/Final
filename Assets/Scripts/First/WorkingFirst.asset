@@ -12,4 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1135fa4f16091604ab142607e0e00c8d, type: 3}
   m_Name: WorkingFirst
   m_EditorClassIdentifier: 
-  dialogueLines: []
+  dialogueLines:
+  - speakerName: Lord
+    dialogueText: 'I wonder why I still have a pitiful son like you '
+    choices: []
+    nextLines: 
+    nextLineIndex: 1
+  - speakerName: Lord
+    dialogueText: Anyways everything is all wrapped up now...
+    choices: []
+    nextLines: 
+    nextLineIndex: 2
+  - speakerName: Lord
+    dialogueText: You have no use to me
+    choices: []
+    nextLines: 
+    nextLineIndex: 3
+  - speakerName: Lord
+    dialogueText: Go to bed.
+    choices:
+    - Yes Father
+    - Eye rolls
+    nextLines: ffffffff04000000
+    nextLineIndex: 0
+  - speakerName: Lord
+    dialogueText: DO NOT ROLL YOUR EYES AT ME
+    choices: []
+    nextLines: 
+    nextLineIndex: 5
+  - speakerName: Lord
+    dialogueText: Off you go.
+    choices: []
+    nextLines: 
+    nextLineIndex: -1
