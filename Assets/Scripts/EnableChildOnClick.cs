@@ -9,6 +9,16 @@ public class EnableChildOnClick : MonoBehaviour
     public string nextSceneName;   // Name of the next scene to load
     private float holdTimer = 0f;  // Timer to track how long the button is held
     private bool isHolding = false; // Flag to check if the mouse is held over the object
+    private Animator animator;     // Reference to the Animator component
+
+    private void Start()
+    {
+        // Get the Animator component from the child object
+        if (childObject != null)
+        {
+            animator = childObject.GetComponent<Animator>();
+        }
+    }
 
     private void Update()
     {
@@ -24,18 +34,27 @@ public class EnableChildOnClick : MonoBehaviour
             {
                 if (hit.collider.gameObject == gameObject) // Check if the hit object is the parent
                 {
-                    isHolding = true;
-
-                    // Enable the child object
-                    if (childObject != null)
+                    if (!isHolding)
                     {
-                        childObject.SetActive(true);
-                    }
+                        // Reset the animation to the beginning
+                        if (animator != null)
+                        {
+                            animator.Play("USING THISZ", -1, 0f); // Replace with your animation state name
+                        }
 
-                    // Enable the UI Image
-                    if (uiImage != null)
-                    {
-                        uiImage.enabled = true;
+                        // Enable the child object
+                        if (childObject != null)
+                        {
+                            childObject.SetActive(true);
+                        }
+
+                        // Enable the UI Image
+                        if (uiImage != null)
+                        {
+                            uiImage.enabled = true;
+                        }
+
+                        isHolding = true;
                     }
 
                     // Increment the hold timer
