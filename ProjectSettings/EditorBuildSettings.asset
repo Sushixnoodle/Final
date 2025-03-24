@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PipePuzzle.unity
     guid: 3df30b9856e70b04aa830989ceb122e1
+  - enabled: 1
+    path: Assets/Scenes/AfterPipe.unity
+    guid: e9289fe97e671c84293cc4b85c49f543
   m_configObjects: {}
