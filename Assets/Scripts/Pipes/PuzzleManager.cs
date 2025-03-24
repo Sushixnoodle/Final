@@ -6,35 +6,45 @@ public class PuzzleManager : MonoBehaviour
     public static PuzzleManager Instance;
     private PipeRotation[] pipes;
 
-    void Start()
-    {
-        // Enable the mouse cursor when the game starts
-        //  EnableCursor();
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
-    private void Awake()
+    void Awake()
     {
         Instance = this;
-        pipes = FindObjectsOfType<PipeRotation>();
+        pipes = FindObjectsOfType<PipeRotation>(true); // Include inactive pipes
     }
 
     public void CheckPuzzleCompletion()
     {
+        Debug.Log("Checking puzzle completion...");
+
         foreach (PipeRotation pipe in pipes)
         {
             if (!pipe.IsCorrectlyAligned())
             {
-                return; // If any pipe is incorrect, do nothing
+                Debug.Log($"Puzzle incomplete due to: {pipe.name}");
+                return;
             }
         }
 
-        Debug.Log("Puzzle Solved! Loading next scene...");
+        Debug.Log("ALL PIPES ALIGNED! Loading next scene...");
         LoadNextScene();
     }
 
-    private void LoadNextScene()
+    void LoadNextScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        int nextScene = SceneManager.GetActiveScene().buildIndex + 1;
+        if (nextScene < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(nextScene);
+        }
+        else
+        {
+            Debug.LogWarning("No next scene available!");
+        }
+    }
+
+    [ContextMenu("Force Check All Pipes")]
+    public void DebugCheckAllPipes()
+    {
+        CheckPuzzleCompletion();
     }
 }
