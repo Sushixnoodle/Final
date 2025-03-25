@@ -35,4 +35,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/AfterPipe.unity
     guid: e9289fe97e671c84293cc4b85c49f543
+  - enabled: 1
+    path: Assets/Scenes/AfterPipeStretch.unity
+    guid: 25cb7c6fe0391c94880a35d1aa273ca7
   m_configObjects: {}
