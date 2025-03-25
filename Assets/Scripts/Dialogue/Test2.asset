@@ -51,8 +51,8 @@ MonoBehaviour:
   - speakerName: Lord
     dialogueText: STOP THIS RIGHT NOW....... as I was saying
     choices: []
-    nextLines: 08000000
-    nextLineIndex: 8
+    nextLines: 
+    nextLineIndex: 2
   - speakerName: Your own thoughts
     dialogueText: Wait I think these colours are helping my fathers to be softer
     choices: []
