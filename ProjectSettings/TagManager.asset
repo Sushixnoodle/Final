@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Interactable
   - InteractableTwo
+  - Mirror
   layers:
   - Default
   - TransparentFX

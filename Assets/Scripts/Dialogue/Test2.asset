@@ -46,7 +46,7 @@ MonoBehaviour:
     choices:
     - I wonder where I get it from
     - Is there something you need to say to me?
-    nextLines: 0600000003000000
+    nextLines: 0600000002000000
     nextLineIndex: -1
   - speakerName: Lord
     dialogueText: STOP THIS RIGHT NOW....... as I was saying
