@@ -1,155 +1,158 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 public class HoldToActivate : MonoBehaviour
 {
     [Header("Hold Settings")]
     [SerializeField] private float holdDuration = 3f;
-    [SerializeField] private GameObject objectToEnableDuringHold;
+    [SerializeField] private GameObject holdVisualObject;
     [SerializeField] private AudioSource holdSound;
 
-    [Header("Panel Settings")]
+    [Header("Fade Panel Settings")]
     [SerializeField] private Image fadePanel;
-    [SerializeField] private float fadeDuration = 1f;
-    [SerializeField] private AudioSource completeSound;
+    [SerializeField] private float fadeInDuration = 1f;
+    [SerializeField] private float panelDisplayTime = 5f;
+    [SerializeField] private float fadeOutDuration = 1f;
+    [SerializeField] private AudioSource panelCompleteSound;
 
-    [Header("Final Objects")]
-    [SerializeField] private GameObject objectToDisableAfterLoad;
-    [SerializeField] private GameObject objectToEnableAfterLoad;
-    [SerializeField] private float waitBeforeSwitch = 4f;
+    [Header("Objects to Disable")]
+    [SerializeField] private List<GameObject> objectsToDisable = new List<GameObject>();
+
+    [Header("Objects to Enable")]
+    [SerializeField] private List<GameObject> objectsToEnable = new List<GameObject>();
 
     private float holdTimer = 0f;
     private bool isHolding = false;
-    private bool sequenceCompleted = false;
+    private bool sequenceStarted = false;
 
     private void Start()
     {
-        // Initialize panel
+        // Initialize all elements
         if (fadePanel != null)
         {
-            Color c = fadePanel.color;
-            c.a = 0f;
-            fadePanel.color = c;
+            fadePanel.color = new Color(fadePanel.color.r, fadePanel.color.g, fadePanel.color.b, 0);
             fadePanel.gameObject.SetActive(false);
         }
 
-        // Initialize objects
-        if (objectToEnableDuringHold != null)
-            objectToEnableDuringHold.SetActive(false);
+        if (holdVisualObject != null) holdVisualObject.SetActive(false);
 
-        if (objectToDisableAfterLoad != null)
-            objectToDisableAfterLoad.SetActive(true);
+        // Initialize all objects to disable
+        foreach (GameObject obj in objectsToDisable)
+        {
+            if (obj != null) obj.SetActive(true);
+        }
 
-        if (objectToEnableAfterLoad != null)
-            objectToEnableAfterLoad.SetActive(false);
+        // Initialize all objects to enable
+        foreach (GameObject obj in objectsToEnable)
+        {
+            if (obj != null) obj.SetActive(false);
+        }
     }
 
     private void Update()
     {
-        if (sequenceCompleted) return;
+        if (sequenceStarted) return;
 
-        // Check for mouse button down
         if (Input.GetMouseButtonDown(0))
         {
-            StartHold();
+            StartHolding();
         }
 
-        // Check for mouse button held
-        if (isHolding && Input.GetMouseButton(0))
+        if (isHolding)
         {
-            holdTimer += Time.deltaTime;
-
-            // Check if hold duration reached
-            if (holdTimer >= holdDuration)
+            if (Input.GetMouseButton(0))
             {
-                CompleteHold();
+                holdTimer += Time.deltaTime;
+                if (holdTimer >= holdDuration)
+                {
+                    StartPanelSequence();
+                }
             }
-        }
-        // Check for mouse button release
-        else if (isHolding && Input.GetMouseButtonUp(0))
-        {
-            CancelHold();
+            else
+            {
+                CancelHolding();
+            }
         }
     }
 
-    private void StartHold()
+    private void StartHolding()
     {
         isHolding = true;
         holdTimer = 0f;
-
-        // Enable object during hold
-        if (objectToEnableDuringHold != null)
-            objectToEnableDuringHold.SetActive(true);
-
-        // Play hold sound
-        if (holdSound != null)
-            holdSound.Play();
+        if (holdVisualObject != null) holdVisualObject.SetActive(true);
+        if (holdSound != null) holdSound.Play();
     }
 
-    private void CancelHold()
+    private void CancelHolding()
     {
         isHolding = false;
-        holdTimer = 0f;
-
-        // Disable object during hold
-        if (objectToEnableDuringHold != null)
-            objectToEnableDuringHold.SetActive(false);
-
-        // Stop hold sound
-        if (holdSound != null)
-            holdSound.Stop();
+        if (holdVisualObject != null) holdVisualObject.SetActive(false);
+        if (holdSound != null) holdSound.Stop();
     }
 
-    private void CompleteHold()
+    private void StartPanelSequence()
     {
-        sequenceCompleted = true;
-        isHolding = false;
-
-        // Disable hold object
-        if (objectToEnableDuringHold != null)
-            objectToEnableDuringHold.SetActive(false);
-
-        // Stop hold sound
-        if (holdSound != null)
-            holdSound.Stop();
-
-        // Play complete sound
-        if (completeSound != null)
-            completeSound.Play();
-
-        // Start fade in coroutine
-        StartCoroutine(FadeInPanel());
+        sequenceStarted = true;
+        StartCoroutine(PanelSequence());
     }
 
-    private IEnumerator FadeInPanel()
+    private IEnumerator PanelSequence()
     {
-        if (fadePanel == null) yield break;
-
-        fadePanel.gameObject.SetActive(true);
-        Color c = fadePanel.color;
-        float startAlpha = c.a;
-
-        float timer = 0f;
-        while (timer < fadeDuration)
+        // Phase 1: Fade in panel
+        if (fadePanel != null)
         {
-            timer += Time.deltaTime;
-            c.a = Mathf.Lerp(startAlpha, 1f, timer / fadeDuration);
-            fadePanel.color = c;
-            yield return null;
+            fadePanel.gameObject.SetActive(true);
+            float timer = 0f;
+
+            while (timer < fadeInDuration)
+            {
+                timer += Time.deltaTime;
+                fadePanel.color = new Color(fadePanel.color.r, fadePanel.color.g, fadePanel.color.b,
+                                         Mathf.Lerp(0, 1, timer / fadeInDuration));
+                yield return null;
+            }
         }
 
-        c.a = 1f;
-        fadePanel.color = c;
+        // Phase 2: Panel fully visible
+        if (holdSound != null) holdSound.Stop();
+        if (holdVisualObject != null) holdVisualObject.SetActive(false);
+        if (panelCompleteSound != null) panelCompleteSound.Play();
 
-        // Wait before switching objects
-        yield return new WaitForSeconds(waitBeforeSwitch);
+        // Disable all objects in the disable list
+        foreach (GameObject obj in objectsToDisable)
+        {
+            if (obj != null) obj.SetActive(false);
+        }
 
-        // Switch objects
-        if (objectToDisableAfterLoad != null)
-            objectToDisableAfterLoad.SetActive(false);
+        // Enable all objects in the enable list
+        foreach (GameObject obj in objectsToEnable)
+        {
+            if (obj != null) obj.SetActive(true);
+        }
 
-        if (objectToEnableAfterLoad != null)
-            objectToEnableAfterLoad.SetActive(true);
+        // Wait with panel fully visible
+        yield return new WaitForSeconds(panelDisplayTime);
+
+        // Phase 3: Fade out panel
+        if (fadePanel != null)
+        {
+            float timer = 0f;
+            while (timer < fadeOutDuration)
+            {
+                timer += Time.deltaTime;
+                fadePanel.color = new Color(fadePanel.color.r, fadePanel.color.g, fadePanel.color.b,
+                                         Mathf.Lerp(1, 0, timer / fadeOutDuration));
+                yield return null;
+            }
+
+            // Phase 4: Panel fully hidden
+            if (panelCompleteSound != null) panelCompleteSound.Stop();
+            fadePanel.gameObject.SetActive(false);
+        }
+
+        // Destroy this script's GameObject after everything is done
+        Destroy(gameObject);
     }
 }

@@ -84735,7 +84735,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 126
   m_CollisionDetection: 0
 --- !u!136 &1261005107
 CapsuleCollider:
@@ -119636,6 +119636,8 @@ MonoBehaviour:
   choiceButton1: {fileID: 74788164}
   choiceButton2: {fileID: 1790166077}
   dialoguePanel: {fileID: 1622100871}
+  textSpeed: 0.05
+  animateText: 1
 --- !u!114 &1568066582
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -58,3 +58,54 @@ MonoBehaviour:
     choices: []
     nextLines: 08000000
     nextLineIndex: 8
+  - speakerName: Lord
+    dialogueText: I wonder what has caused this
+    choices:
+    - It was me
+    - ...
+    nextLines: 090000000a000000
+    nextLineIndex: -1
+  - speakerName: Lord
+    dialogueText: It was YOU?!
+    choices: []
+    nextLines: 
+    nextLineIndex: 11
+  - speakerName: Lord
+    dialogueText: Was it you?
+    choices:
+    - Yes father
+    - No
+    nextLines: 090000000c000000
+    nextLineIndex: -1
+  - speakerName: Lord
+    dialogueText: 'For once you are doing a good job '
+    choices: []
+    nextLines: 
+    nextLineIndex: 13
+  - speakerName: Lord
+    dialogueText: Well whoever it was is really doing a good job
+    choices: []
+    nextLines: 
+    nextLineIndex: 13
+  - speakerName: Your own thoughts
+    dialogueText: Im determined to help my father and recover our relationship
+    choices: []
+    nextLines: 
+    nextLineIndex: 14
+  - speakerName: Lord
+    dialogueText: I heard some noise in the sewer systems did you
+    choices:
+    - ???
+    - Maybe it was the result of you using the bathroom
+    nextLines: 0f00000010000000
+    nextLineIndex: -1
+  - speakerName: Lord
+    dialogueText: Yeah something might be going on there...
+    choices: []
+    nextLines: 
+    nextLineIndex: -1
+  - speakerName: Lord
+    dialogueText: GET OUT OF MY SIGHT!!!
+    choices: []
+    nextLines: 
+    nextLineIndex: -1

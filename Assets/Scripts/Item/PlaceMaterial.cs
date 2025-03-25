@@ -4,14 +4,20 @@ using UnityEngine;
 
 public class PlaceMaterial : MonoBehaviour
 {
-    [Tooltip("The GameObject to enable when this object is clicked")]
-    public GameObject objectToEnable;
+    [Tooltip("List of GameObjects to enable when this object is clicked")]
+    public List<GameObject> objectsToEnable;
 
     private void OnMouseDown()
     {
-        if (objectToEnable != null)
+        if (objectsToEnable != null && objectsToEnable.Count > 0)
         {
-            objectToEnable.SetActive(true);
+            foreach (GameObject obj in objectsToEnable)
+            {
+                if (obj != null)
+                {
+                    obj.SetActive(true);
+                }
+            }
         }
     }
 }
