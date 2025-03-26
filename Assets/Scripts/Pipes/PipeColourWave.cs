@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class PipeColourWave : MonoBehaviour
 {
+    public enum ColorDirection
+    {
+        LeftToRight,
+        RightToLeft,
+        UpToDown,
+        DownToUp
+    }
+
     [System.Serializable]
-    public class PipeData
+    public class PipeEntry
     {
         public Renderer pipeRenderer;
-        [HideInInspector] public Material originalMaterial;
+        public ColorDirection direction;
         [HideInInspector] public Material runtimeMaterial;
         [HideInInspector] public Color originalColor;
     }
@@ -24,31 +32,22 @@ public class PipeColourWave : MonoBehaviour
     public string emissionProperty = "_EmissionColor";
 
     [Header("Pipe Configuration")]
-    public List<PipeData> pipes = new List<PipeData>();
-    public bool autoFindPipes = false;
-    public string pipeTag = "Pipe";
+    public List<PipeEntry> pipes = new List<PipeEntry>();
 
     void Start()
     {
-        InitializePipes();
-        StartCoroutine(RunColorWave());
+        InitializeMaterials();
+        StartCoroutine(ExecuteColorWave());
     }
 
-    void InitializePipes()
+    void InitializeMaterials()
     {
-        if (autoFindPipes && pipes.Count == 0)
-        {
-            FindAndSortPipes();
-        }
-
-        foreach (PipeData pipe in pipes)
+        foreach (PipeEntry pipe in pipes)
         {
             if (pipe.pipeRenderer != null)
             {
-                pipe.originalMaterial = pipe.pipeRenderer.sharedMaterial;
-                pipe.runtimeMaterial = new Material(pipe.originalMaterial);
+                pipe.runtimeMaterial = new Material(pipe.pipeRenderer.sharedMaterial);
                 pipe.pipeRenderer.material = pipe.runtimeMaterial;
-
                 pipe.originalColor = affectEmission ?
                     pipe.runtimeMaterial.GetColor(emissionProperty) :
                     pipe.runtimeMaterial.GetColor(colorProperty);
@@ -56,45 +55,51 @@ public class PipeColourWave : MonoBehaviour
         }
     }
 
-    void FindAndSortPipes()
+    IEnumerator ExecuteColorWave()
     {
-        GameObject[] pipeObjects = GameObject.FindGameObjectsWithTag(pipeTag);
-        System.Array.Sort(pipeObjects, (a, b) => a.transform.position.x.CompareTo(b.transform.position.x));
-
-        pipes.Clear();
-        foreach (GameObject pipeObj in pipeObjects)
-        {
-            Renderer r = pipeObj.GetComponent<Renderer>();
-            if (r != null)
-            {
-                pipes.Add(new PipeData { pipeRenderer = r });
-            }
-        }
-    }
-
-    IEnumerator RunColorWave()
-    {
-        foreach (PipeData pipe in pipes)
+        foreach (PipeEntry pipe in pipes)
         {
             if (pipe.pipeRenderer != null)
             {
-                StartCoroutine(ChangePipeColor(pipe));
+                StartCoroutine(AnimatePipeColor(pipe));
                 yield return new WaitForSeconds(delayBetweenPipes);
             }
         }
     }
 
-    IEnumerator ChangePipeColor(PipeData pipe)
+    IEnumerator AnimatePipeColor(PipeEntry pipe)
     {
         float elapsed = 0f;
         Material mat = pipe.runtimeMaterial;
+        Vector3 startPos = pipe.pipeRenderer.transform.position;
+        float width = pipe.pipeRenderer.bounds.size.x;
+        float height = pipe.pipeRenderer.bounds.size.y;
 
         while (elapsed < colorChangeDuration)
         {
             elapsed += Time.deltaTime;
             float t = Mathf.Clamp01(elapsed / colorChangeDuration);
-            Color newColor = Color.Lerp(pipe.originalColor, targetColor, t);
 
+            // Calculate progress based on direction
+            float progress = 0f;
+            switch (pipe.direction)
+            {
+                case ColorDirection.LeftToRight:
+                    progress = Mathf.Lerp(startPos.x - width / 2, startPos.x + width / 2, t);
+                    break;
+                case ColorDirection.RightToLeft:
+                    progress = Mathf.Lerp(startPos.x + width / 2, startPos.x - width / 2, t);
+                    break;
+                case ColorDirection.UpToDown:
+                    progress = Mathf.Lerp(startPos.y + height / 2, startPos.y - height / 2, t);
+                    break;
+                case ColorDirection.DownToUp:
+                    progress = Mathf.Lerp(startPos.y - height / 2, startPos.y + height / 2, t);
+                    break;
+            }
+
+            // Apply color change
+            Color newColor = Color.Lerp(pipe.originalColor, targetColor, t);
             if (affectEmission)
             {
                 mat.SetColor(emissionProperty, newColor);
@@ -108,6 +113,7 @@ public class PipeColourWave : MonoBehaviour
             yield return null;
         }
 
+        // Ensure final color
         if (affectEmission)
         {
             mat.SetColor(emissionProperty, targetColor);
@@ -120,18 +126,11 @@ public class PipeColourWave : MonoBehaviour
 
     void OnDestroy()
     {
-        foreach (PipeData pipe in pipes)
+        foreach (PipeEntry pipe in pipes)
         {
             if (pipe.runtimeMaterial != null)
             {
-                if (Application.isPlaying)
-                {
-                    Destroy(pipe.runtimeMaterial);
-                }
-                else
-                {
-                    DestroyImmediate(pipe.runtimeMaterial);
-                }
+                Destroy(pipe.runtimeMaterial);
             }
         }
     }
