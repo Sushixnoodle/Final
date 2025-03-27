@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnableBook : MonoBehaviour
@@ -8,44 +6,39 @@ public class EnableBook : MonoBehaviour
     public Dialogue dialogue;
     public float interactionDistance = 3f;
 
-    private DialogueOnlyManager dialogueOnlyManager;
+    private DialogueOnlyManager dialogueManager;
     private Camera mainCamera;
 
     private void Start()
     {
-        dialogueOnlyManager = FindObjectOfType<DialogueOnlyManager>();
-        if (dialogueOnlyManager == null)
-        {
-            Debug.LogError("No DialogueManager found in the scene!");
-        }
-
+        dialogueManager = FindObjectOfType<DialogueOnlyManager>();
         mainCamera = Camera.main;
-        if (mainCamera == null)
-        {
-            Debug.LogError("No main camera found in the scene!");
-        }
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (CanInteract() && Input.GetMouseButtonDown(0))
         {
             Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out RaycastHit hit, interactionDistance))
+            if (Physics.Raycast(ray, out RaycastHit hit, interactionDistance) && hit.collider.gameObject == gameObject)
             {
-                if (hit.collider.gameObject == gameObject)
-                {
-                    TriggerDialogue();
-                }
+                TriggerDialogue();
             }
         }
     }
 
+    private bool CanInteract()
+    {
+        return dialogueManager != null &&
+               dialogueManager.dialoguePanel != null &&
+               !dialogueManager.dialoguePanel.activeSelf;
+    }
+
     public void TriggerDialogue()
     {
-        if (dialogueOnlyManager != null && dialogue != null)
+        if (dialogueManager != null && dialogue != null)
         {
-            dialogueOnlyManager.StartDialogue(dialogue);
+            dialogueManager.StartDialogue(dialogue);
         }
     }
 }

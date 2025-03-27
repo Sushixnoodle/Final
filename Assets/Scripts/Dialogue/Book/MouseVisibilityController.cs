@@ -3,37 +3,74 @@ using UnityEngine;
 public class MouseVisibilityController : MonoBehaviour
 {
     [Header("References")]
-    [Tooltip("Drag the Dialogue Panel here")]
     public GameObject dialoguePanel;
+    public Movement playerMovement;
+    public Rigidbody playerRigidbody; // Optional - only if using Rigidbody
 
-    [Header("Mouse Settings")]
-    [Tooltip("Should the mouse be locked when panel is closed?")]
-    public bool lockMouseWhenPanelClosed = true;
-    [Tooltip("Should the mouse be visible only when panel is open?")]
-    public bool hideMouseWhenPanelClosed = true;
+    [Header("Settings")]
+    public bool lockMouseWhenClosed = true;
+    public bool hideMouseWhenClosed = true;
+
+    private Vector3 savedVelocity;
+    private Vector3 savedAngularVelocity;
+    private bool wasKinematic;
+
+    private void Start()
+    {
+        if (playerMovement == null)
+            playerMovement = FindObjectOfType<Movement>();
+
+        if (playerRigidbody == null)
+            playerRigidbody = playerMovement?.GetComponent<Rigidbody>();
+
+        UpdateState(dialoguePanel != null && dialoguePanel.activeSelf);
+    }
 
     private void Update()
     {
-        if (dialoguePanel == null)
-        {
-            Debug.LogWarning("Dialogue Panel reference is missing in MouseVisibilityController!");
-            return;
-        }
+        if (dialoguePanel != null)
+            UpdateState(dialoguePanel.activeSelf);
+    }
 
-        // If panel is active, show & unlock mouse
-        if (dialoguePanel.activeSelf)
+    private void UpdateState(bool panelActive)
+    {
+        if (panelActive)
         {
+            // Freeze everything
+            if (playerMovement != null)
+                playerMovement.enabled = false;
+
+            if (playerRigidbody != null)
+            {
+                savedVelocity = playerRigidbody.velocity;
+                savedAngularVelocity = playerRigidbody.angularVelocity;
+                wasKinematic = playerRigidbody.isKinematic;
+                playerRigidbody.isKinematic = true;
+            }
+
+            // Mouse control
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
-        // If panel is inactive, hide & lock mouse
         else
         {
-            if (lockMouseWhenPanelClosed)
-                Cursor.lockState = CursorLockMode.Locked;
+            // Unfreeze everything
+            if (playerMovement != null)
+                playerMovement.enabled = true;
 
-            if (hideMouseWhenPanelClosed)
-                Cursor.visible = false;
+            if (playerRigidbody != null)
+            {
+                playerRigidbody.isKinematic = wasKinematic;
+                if (!wasKinematic)
+                {
+                    playerRigidbody.velocity = savedVelocity;
+                    playerRigidbody.angularVelocity = savedAngularVelocity;
+                }
+            }
+
+            // Mouse control
+            Cursor.lockState = lockMouseWhenClosed ? CursorLockMode.Locked : CursorLockMode.None;
+            Cursor.visible = !hideMouseWhenClosed;
         }
     }
 }
