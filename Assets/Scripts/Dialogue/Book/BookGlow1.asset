@@ -45,7 +45,7 @@ MonoBehaviour:
     - Carry on
     nextLines: 05000000
     nextLineIndex: 5
-  - speakerName: 
+  - speakerName: Your own thoughts
     dialogueText: Who am I kidding... colours do not exist
     choices:
     - Carry on

@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1135fa4f16091604ab142607e0e00c8d, type: 3}
+  m_Name: BookGlow
+  m_EditorClassIdentifier: 
+  dialogueLines:
+  - speakerName: Title
+    dialogueText: Colour myths
+    choices:
+    - Carry on
+    - Close
+    nextLines: 01000000ffffffff
+    nextLineIndex: 0
+  - speakerName: Colours
+    dialogueText: Not that colours exist but it is rumoured for it to have linked
+      powers
+    choices:
+    - Carry on
+    nextLines: 02000000
+    nextLineIndex: 2
+  - speakerName: Red
+    dialogueText: 'Power: ???'
+    choices:
+    - Carry on
+    nextLines: 03000000
+    nextLineIndex: 3
+  - speakerName: Blue
+    dialogueText: 'Power: ???'
+    choices:
+    - Carry on
+    nextLines: 04000000
+    nextLineIndex: 4
+  - speakerName: Yellow
+    dialogueText: 'Power: ??? '
+    choices:
+    - Carry on
+    nextLines: 05000000
+    nextLineIndex: 5
+  - speakerName: Your own thoughts
+    dialogueText: Who am I kidding... colours do not exist
+    choices:
+    - Carry on
+    nextLines: 06000000
+    nextLineIndex: 6
+  - speakerName: End
+    dialogueText: The rest of the pages seem to be ripped out...
+    choices:
+    - Close
+    nextLines: ffffffff
+    nextLineIndex: -1

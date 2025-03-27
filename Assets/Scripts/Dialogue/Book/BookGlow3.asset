@@ -12,4 +12,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1135fa4f16091604ab142607e0e00c8d, type: 3}
   m_Name: BookGlow3
   m_EditorClassIdentifier: 
-  dialogueLines: []
+  dialogueLines:
+  - speakerName: Title
+    dialogueText: Colour myths
+    choices:
+    - Carry on
+    - Close
+    nextLines: 01000000ffffffff
+    nextLineIndex: 0
+  - speakerName: Colours
+    dialogueText: Not that colours exist but it is rumoured for it to have linked
+      powers
+    choices:
+    - Carry on
+    nextLines: 02000000
+    nextLineIndex: 2
+  - speakerName: Red
+    dialogueText: 'Power: Fire ability'
+    choices:
+    - Carry on
+    nextLines: 03000000
+    nextLineIndex: 3
+  - speakerName: Blue
+    dialogueText: 'Power: Water ability'
+    choices:
+    - Carry on
+    nextLines: 04000000
+    nextLineIndex: 4
+  - speakerName: Yellow
+    dialogueText: 'Power: Sunlight ability'
+    choices:
+    - Carry on
+    nextLines: 05000000
+    nextLineIndex: 5
+  - speakerName: Your own thoughts
+    dialogueText: Who am I kidding... colours do not exist
+    choices:
+    - Carry on
+    nextLines: 06000000
+    nextLineIndex: 6
+  - speakerName: End
+    dialogueText: The rest of the pages seem to be ripped out...
+    choices:
+    - Close
+    nextLines: ffffffff
+    nextLineIndex: -1
