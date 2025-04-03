@@ -2,41 +2,54 @@ using UnityEngine;
 
 public class LaserEmitter : MonoBehaviour
 {
+    [Header("Laser Settings")]
     public LineRenderer laserLine;
     public LayerMask reflectionLayers;
     public float maxDistance = 100f;
-    public Color laserColor = Color.red;
+    public int maxBounces = 10;
 
     private void Start()
     {
-        laserLine.startColor = laserLine.endColor = laserColor;
-        laserLine.startWidth = laserLine.endWidth = 0.1f;
+        if (laserLine == null) laserLine = GetComponent<LineRenderer>();
+        laserLine.positionCount = maxBounces + 1;
     }
 
     private void Update()
     {
-        ShootLaser();
+        UpdateLaser();
     }
 
-    private void ShootLaser()
+    private void UpdateLaser()
     {
-        laserLine.positionCount = 2;
-        laserLine.SetPosition(0, transform.position);
+        // Reset all positions
+        for (int i = 0; i < laserLine.positionCount; i++)
+            laserLine.SetPosition(i, Vector3.zero);
 
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit, maxDistance, reflectionLayers))
+        Vector3 currentPos = transform.position;
+        Vector3 currentDir = transform.forward;
+
+        laserLine.SetPosition(0, currentPos);
+
+        for (int i = 0; i < maxBounces; i++)
         {
-            laserLine.SetPosition(1, hit.point);
-
-            // Check if we hit a mirror
-            MirrorController mirror = hit.collider.GetComponent<MirrorController>();
-            if (mirror != null)
+            if (Physics.Raycast(currentPos, currentDir, out RaycastHit hit, maxDistance, reflectionLayers))
             {
-                mirror.ReceiveLaser(transform.forward);
+                laserLine.SetPosition(i + 1, hit.point);
+
+                // Notify mirror if it's hit
+                MirrorController mirror = hit.collider.GetComponent<MirrorController>();
+                if (mirror != null)
+                    mirror.ReceiveLaser(currentDir, hit.point);
+
+                // Prepare next bounce
+                currentPos = hit.point;
+                currentDir = Vector3.Reflect(currentDir, hit.normal);
             }
-        }
-        else
-        {
-            laserLine.SetPosition(1, transform.position + transform.forward * maxDistance);
+            else
+            {
+                laserLine.SetPosition(i + 1, currentPos + currentDir * maxDistance);
+                break;
+            }
         }
     }
 }
