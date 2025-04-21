@@ -39,6 +39,9 @@ EditorBuildSettings:
     path: Assets/Scenes/AfterPipeStretch.unity
     guid: 25cb7c6fe0391c94880a35d1aa273ca7
   - enabled: 1
+    path: Assets/Scenes/SunlightPuzzle.unity
+    guid: 9d14a05c6262e084587887ae9ef7e10a
+  - enabled: 1
     path: Assets/Scenes/TreeCut.unity
     guid: bfabb9a4c12fb21468bf257e4148ce1f
   m_configObjects: {}
