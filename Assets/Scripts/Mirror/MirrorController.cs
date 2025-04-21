@@ -15,7 +15,7 @@ public class MirrorController : MonoBehaviour
     }
 
     // Called when laser hits the mirror (for LaserEmitter)
-    public void ReceiveLaser(Vector3 direction, Vector3 hitPoint)
+    public void ReceiveLaser(Vector3 direction, Vector3 hitPoint, RaycastHit hit)
     {
         OnLaserHit(); // Reuse the same visual feedback
     }
