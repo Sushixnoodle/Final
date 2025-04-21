@@ -21,25 +21,36 @@ public class LaserTarget : MonoBehaviour
         }
     }
 
-    // Called when hit by the laser (compatible with both systems)
-    public void OnLaserHit()
+    private void Update()
     {
-        if (isHit) return; // Prevent multiple triggers
+        //OnLaserHit(hit);
+    }
 
-        isHit = true;
-
-        // Visual feedback
-        if (objectRenderer != null)
+    // Called when hit by the laser (compatible with both systems)
+    public void OnLaserHit(RaycastHit hit)
+    {
+        if(hit.collider.CompareTag("Mirror"))
         {
+            isHit = true;
             objectRenderer.material.color = hitColor;
+            LoadNextScene();
         }
+    }
 
-        // Load next scene after delay
-        Invoke("LoadNextScene", transitionDelay);
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Target"))
+        {
+            Debug.Log("IM BEING TOUCHED BY LASER");
+            isHit = true;
+            objectRenderer.material.color = hitColor;
+            LoadNextScene();
+        }
     }
 
     private void LoadNextScene()
     {
+        Debug.Log("PREPARING TELELPORT!!!!!");
         if (!string.IsNullOrEmpty(nextSceneName))
         {
             SceneManager.LoadScene(nextSceneName);
