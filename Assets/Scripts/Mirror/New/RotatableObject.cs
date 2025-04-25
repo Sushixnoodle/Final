@@ -3,55 +3,83 @@ using UnityEngine;
 public class RotatableObject : MonoBehaviour
 {
     [Header("Rotation Settings")]
-    [Tooltip("How close the player needs to be to interact")]
     public float activationDistance = 5f;
-    [Tooltip("Rotation speed in degrees per second")]
     public float rotationSpeed = 90f;
-    [Tooltip("Should rotation be smoothed?")]
     public bool smoothRotation = true;
-    [Tooltip("Smoothing speed (if enabled)")]
     public float smoothTime = 0.2f;
 
     [Header("References")]
-    [Tooltip("Reference to the player transform (drag player here)")]
     public Transform player;
-    [Tooltip("Optional highlight effect when in range")]
     public GameObject highlightEffect;
+    public AudioSource rotationAudioSource; // Drag your audio source here
 
-    private float currentVelocity; // For smooth damping
-    private float targetRotation; // For smooth rotation
+    private float currentVelocity;
+    private float targetRotation;
     private bool playerInRange;
+    private bool isRotating;
 
+    private void HandleAudio()
+    {
+        if (rotationAudioSource == null) return;
+
+        if (isRotating)
+        {
+            if (!rotationAudioSource.isPlaying)
+            {
+                rotationAudioSource.volume = 1f;
+                rotationAudioSource.Play();
+            }
+        }
+        else
+        {
+            if (rotationAudioSource.isPlaying)
+            {
+                rotationAudioSource.Stop();
+            }
+        }
+    }
     private void Update()
     {
-        // Check player distance
         float distance = Vector3.Distance(transform.position, player.position);
         playerInRange = distance <= activationDistance;
 
-        // Toggle highlight effect if assigned
         if (highlightEffect != null)
             highlightEffect.SetActive(playerInRange);
 
-        // Only allow rotation when player is in range
+        bool wasRotating = isRotating;
+        isRotating = false;
+
         if (playerInRange)
         {
             HandleRotationInput();
         }
 
         ApplyRotation();
+
+        // Check if rotation started or stopped
+        if (isRotating && !wasRotating)
+        {
+            if (rotationAudioSource != null && !rotationAudioSource.isPlaying)
+                rotationAudioSource.Play();
+        }
+        else if (!isRotating && wasRotating)
+        {
+            if (rotationAudioSource != null && rotationAudioSource.isPlaying)
+                rotationAudioSource.Stop();
+        }
     }
 
     private void HandleRotationInput()
     {
-        // Rotate left while holding left mouse button
         if (Input.GetMouseButton(0))
         {
             targetRotation -= rotationSpeed * Time.deltaTime;
+            isRotating = true;
         }
-        // Rotate right while holding right mouse button
         else if (Input.GetMouseButton(1))
         {
             targetRotation += rotationSpeed * Time.deltaTime;
+            isRotating = true;
         }
     }
 
@@ -59,7 +87,6 @@ public class RotatableObject : MonoBehaviour
     {
         if (smoothRotation)
         {
-            // Smooth damp the rotation
             float currentAngle = Mathf.SmoothDampAngle(
                 transform.eulerAngles.y,
                 targetRotation,
@@ -70,12 +97,10 @@ public class RotatableObject : MonoBehaviour
         }
         else
         {
-            // Instant rotation
             transform.rotation = Quaternion.Euler(0, targetRotation, 0);
         }
     }
 
-    // Visualize activation distance in editor
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
