@@ -1,33 +1,34 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+
 
 public class doorTrigger : MonoBehaviour
 {
-    public Animator doorAnimator;
-    private bool isPlayerInRange = false;
-    private bool isOpen = false;
+    
+    public Animator animator;
+    
+    void Start()
+    {
 
+    }
+
+    // Update is called once per frame
+    
     void Update()
     {
-        if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
-        {
-            isOpen = !isOpen;
-            doorAnimator.SetBool("isOpen", isOpen);
-        }
+
     }
 
-    void OnTriggerEnter(Collider other)
+    
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerInRange = true;
-        }
+        animator.SetBool("isOpen", true);
     }
 
-    void OnTriggerExit(Collider other)
+   
+    private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Player"))
-        {
-            isPlayerInRange = false;
-        }
+        animator.SetBool("isOpen", false);
     }
 }
