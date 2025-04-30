@@ -2,32 +2,32 @@ using UnityEngine;
 
 public class doorTrigger : MonoBehaviour
 {
-    public Animator doorAnimator;
-    private bool isPlayerInRange = false;
+    public Animator animator;
+    private bool isPlayerNearby = false;
     private bool isOpen = false;
 
     void Update()
     {
-        if (isPlayerInRange && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerNearby && Input.GetMouseButtonDown(0)) // 0 = Left Mouse Button
         {
             isOpen = !isOpen;
-            doorAnimator.SetBool("isOpen", isOpen);
+            animator.SetBool("isOpen", isOpen);
         }
     }
 
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            isPlayerInRange = true;
+            isPlayerNearby = true;
         }
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            isPlayerInRange = false;
+            isPlayerNearby = false;
         }
     }
 }
