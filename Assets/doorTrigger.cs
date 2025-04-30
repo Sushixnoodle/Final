@@ -1,34 +1,33 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 
 public class doorTrigger : MonoBehaviour
 {
-    
     public Animator animator;
-    
-    void Start()
-    {
+    private bool isPlayerNearby = false;
+    private bool isOpen = false;
 
-    }
-
-    // Update is called once per frame
-    
     void Update()
     {
-
+        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
+        {
+            isOpen = !isOpen;
+            animator.SetBool("isOpen", isOpen);
+        }
     }
 
-    
     private void OnTriggerEnter(Collider other)
     {
-        animator.SetBool("isOpen", true);
+        if (other.CompareTag("Player"))
+        {
+            isPlayerNearby = true;
+        }
     }
 
-   
     private void OnTriggerExit(Collider other)
     {
-        animator.SetBool("isOpen", false);
+        if (other.CompareTag("Player"))
+        {
+            isPlayerNearby = false;
+        }
     }
 }
