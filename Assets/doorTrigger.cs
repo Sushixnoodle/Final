@@ -8,7 +8,7 @@ public class doorTrigger : MonoBehaviour
 
     void Update()
     {
-        if (isPlayerNearby && Input.GetKeyDown(KeyCode.E))
+        if (isPlayerNearby && Input.GetMouseButtonDown(0)) // 0 = Left Mouse Button
         {
             isOpen = !isOpen;
             animator.SetBool("isOpen", isOpen);
