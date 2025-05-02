@@ -8,9 +8,11 @@ public class EnableChildOnClick : MonoBehaviour
     public Image uiImage;          // Assign the UI Image in the Inspector
     public string nextSceneName;   // Name of the next scene to load
     public float maxDistance = 5f; // Maximum distance for interaction
+    public AudioSource activationSound; // Assign an AudioSource in the Inspector
 
     private float holdTimer = 0f;
     private bool isHolding = false;
+    private bool soundPlayed = false;
     private Animator animator;
 
     private void Start()
@@ -30,7 +32,6 @@ public class EnableChildOnClick : MonoBehaviour
 
             if (Physics.Raycast(ray, out hit))
             {
-                // Check if it's the correct object and within distance
                 if (hit.collider.gameObject == gameObject &&
                     Vector3.Distance(Camera.main.transform.position, hit.point) <= maxDistance)
                 {
@@ -49,6 +50,12 @@ public class EnableChildOnClick : MonoBehaviour
                         if (uiImage != null)
                         {
                             uiImage.enabled = true;
+                        }
+
+                        if (!soundPlayed && activationSound != null)
+                        {
+                            activationSound.Play();
+                            soundPlayed = true;
                         }
 
                         isHolding = true;
@@ -84,6 +91,7 @@ public class EnableChildOnClick : MonoBehaviour
     {
         isHolding = false;
         holdTimer = 0f;
+        soundPlayed = false;
 
         if (childObject != null)
         {
@@ -96,7 +104,6 @@ public class EnableChildOnClick : MonoBehaviour
         }
     }
 
-    // Optional: Visualize the max distance in the editor
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
