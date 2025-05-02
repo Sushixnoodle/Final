@@ -156,20 +156,11 @@ public class EnableObjectOnInteraction : MonoBehaviour
             audioSource.PlayOneShot(clip); // Play the specified sound
         }
     }
-    private IEnumerator LoadSceneAsync(string sceneName)
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-        operation.allowSceneActivation = true;
 
-        while (!operation.isDone)
-        {
-            yield return null;
-        }
-    }
     private void ChangeScene()
     {
 
-         StartCoroutine(LoadSceneAsync("AfterTorch"));
-        //Debug.Log("Scene changed to: YourSceneName");
+        SceneManager.LoadScene("AfterTorch");
+      //Debug.Log("Scene changed to: YourSceneName");
     }
 }

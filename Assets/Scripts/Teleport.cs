@@ -4,30 +4,15 @@ using UnityEngine;
 
 public class Teleport : MonoBehaviour
 {
-    public Transform target;
-    public float teleportCooldown = 1f; // Cooldown duration in seconds
-
-    private static bool isTeleporting = false;
-
-    private void OnTriggerEnter(Collider other)
+    // Start is called before the first frame update
+    void Start()
     {
-        if (isTeleporting) return;
-
-        CharacterController controller = other.gameObject.GetComponent<CharacterController>();
-        if (controller != null)
-        {
-            StartCoroutine(TeleportWithCooldown(other.gameObject, controller));
-        }
+        
     }
 
-    private IEnumerator TeleportWithCooldown(GameObject player, CharacterController controller)
+    // Update is called once per frame
+    void Update()
     {
-        isTeleporting = true;
-        controller.enabled = false;
-        player.transform.position = target.position;
-        controller.enabled = true;
-
-        yield return new WaitForSeconds(teleportCooldown);
-        isTeleporting = false;
+        
     }
 }

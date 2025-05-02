@@ -16,14 +16,14 @@ MonoBehaviour:
   - speakerName: Lord
     dialogueText: SON!
     choices:
-    - Yes father.
+    - Yes father
     nextLines: 01000000
     nextLineIndex: -1
   - speakerName: Lord
     dialogueText: Is this COLOUR!?!? I see
     choices:
-    - I think so.
-    - Well what do you think.
+    - I think so
+    - Well what do you think
     nextLines: 0200000003000000
     nextLineIndex: -1
   - speakerName: Lord
@@ -32,7 +32,7 @@ MonoBehaviour:
     nextLines: 04000000
     nextLineIndex: 4
   - speakerName: Lord
-    dialogueText: DO NOT SPEAK TO YOUR FATHER LIKE THAT!
+    dialogueText: DO NOT SPEAK TO YOUR FATHER LIKE THAT
     choices: []
     nextLines: 05000000
     nextLineIndex: 5
@@ -44,24 +44,24 @@ MonoBehaviour:
   - speakerName: Lord
     dialogueText: Let us put your horrible attitude to the side
     choices:
-    - I wonder where I get it from.
+    - I wonder where I get it from
     - Is there something you need to say to me?
     nextLines: 0600000002000000
     nextLineIndex: -1
   - speakerName: Lord
-    dialogueText: STOP THIS RIGHT NOW....... as I was saying.
+    dialogueText: STOP THIS RIGHT NOW....... as I was saying
     choices: []
     nextLines: 
     nextLineIndex: 2
   - speakerName: Your own thoughts
-    dialogueText: These colours seem to be making my father nicer.
+    dialogueText: Wait I think these colours are helping my fathers to be softer
     choices: []
     nextLines: 08000000
     nextLineIndex: 8
   - speakerName: Lord
-    dialogueText: I wonder what has caused this.
+    dialogueText: I wonder what has caused this
     choices:
-    - It was me.
+    - It was me
     - ...
     nextLines: 090000000a000000
     nextLineIndex: -1
@@ -73,23 +73,22 @@ MonoBehaviour:
   - speakerName: Lord
     dialogueText: Was it you?
     choices:
-    - Yes father.
-    - No.
+    - Yes father
+    - No
     nextLines: 090000000c000000
     nextLineIndex: -1
   - speakerName: Lord
-    dialogueText: For once you are doing a good job.
+    dialogueText: 'For once you are doing a good job '
     choices: []
     nextLines: 
     nextLineIndex: 13
   - speakerName: Lord
-    dialogueText: '[Scoffs]... yeah it could never be you. If it was I could proud
-      of you for once.'
+    dialogueText: Well whoever it was is really doing a good job
     choices: []
     nextLines: 
     nextLineIndex: 13
   - speakerName: Your own thoughts
-    dialogueText: Im determined to help my father and recover our relationship.
+    dialogueText: Im determined to help my father and recover our relationship
     choices: []
     nextLines: 
     nextLineIndex: 14
@@ -97,7 +96,7 @@ MonoBehaviour:
     dialogueText: I heard some noise in the sewer systems did you
     choices:
     - ???
-    - Maybe it was the result of you using the bathroom.
+    - Maybe it was the result of you using the bathroom
     nextLines: 0f00000010000000
     nextLineIndex: -1
   - speakerName: Lord
