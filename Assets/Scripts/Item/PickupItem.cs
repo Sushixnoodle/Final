@@ -122,6 +122,7 @@ public class PickupItem : MonoBehaviour
         }
 
         // Destroy the pickup item
+
         Destroy(gameObject);
     }
 }
