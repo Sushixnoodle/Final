@@ -94,7 +94,7 @@ MonoBehaviour:
     nextLines: 
     nextLineIndex: 14
   - speakerName: Lord
-    dialogueText: I heard some noise in the sewer systems did you
+    dialogueText: Also I heard some noise in the pipe systems did you
     choices:
     - ???
     - Maybe it was the result of you using the bathroom.
