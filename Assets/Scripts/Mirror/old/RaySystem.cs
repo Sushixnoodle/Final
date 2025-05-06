@@ -10,28 +10,42 @@ public class RaySystem : MonoBehaviour
     public float rayOffset = 0.01f;
 
     [Header("Layer Masks")]
-    public LayerMask reflectionLayers; // Layers that reflect the ray (e.g., mirrors)
-    public LayerMask blockingLayers;   // Layers that stop the ray (e.g., walls)
+    public LayerMask reflectionLayers; // Layers that reflect the ray
+    public LayerMask blockingLayers;   // Layers that stop the ray
 
     [Header("References")]
     public LineRenderer line;
+    public AudioClip targetHitSound; // Assign in inspector
+    public Transform lastMirror; // Drag the last mirror in inspector to freeze its rotation
 
-    [Header("Target Detection")]
+    [Header("Target Settings")]
     public string nextSceneName;
     public Color hitColor = Color.green;
-    public float transitionDelay = 0.5f;
+    public float sceneTransitionDelay = 3f; // 3 second delay after hit
 
-    private bool isHit = false;
+    private AudioSource audioSource;
+    private bool targetHit = false;
+    private Quaternion lastMirrorRotationWhenHit;
+    private bool mirrorRotationFrozen = false;
 
     void Start()
     {
         if (line == null) line = GetComponent<LineRenderer>();
         line.useWorldSpace = true;
+
+        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.playOnAwake = false;
     }
 
     void Update()
     {
         UpdateLaser();
+
+        // Freeze last mirror's rotation if target was hit
+        if (mirrorRotationFrozen && lastMirror != null)
+        {
+            lastMirror.rotation = lastMirrorRotationWhenHit;
+        }
     }
 
     void UpdateLaser()
@@ -51,21 +65,19 @@ public class RaySystem : MonoBehaviour
 
             if (!didHit)
             {
-                // No hit - draw ray to max distance
                 AddLinePoint(currentPos + currentDir * maxDistance);
                 break;
             }
 
-            // Add hit point to line
             AddLinePoint(hit.point);
 
             // Check if we hit a blocking layer
             if (((1 << hit.collider.gameObject.layer) & blockingLayers) != 0)
             {
-                // Hit a blocking object - stop here
-                if (hit.collider.CompareTag("Target"))
+                // Check for target hit on blocking layer
+                if (hit.collider.CompareTag("Target") && !targetHit)
                 {
-                    StartCoroutine(OnLaserHit(hit));
+                    OnTargetHit(hit);
                 }
                 break;
             }
@@ -73,17 +85,53 @@ public class RaySystem : MonoBehaviour
             // Handle reflection
             if (((1 << hit.collider.gameObject.layer) & reflectionLayers) != 0)
             {
-                // Reflect off mirror-like surfaces
+                // Check for target hit on reflection layer
+                if (hit.collider.CompareTag("Target") && !targetHit)
+                {
+                    OnTargetHit(hit);
+                }
+
                 currentPos = hit.point + (hit.normal * rayOffset);
                 currentDir = Vector3.Reflect(currentDir, hit.normal);
                 bounceCount++;
             }
+        }
+    }
 
-            // Check for target even on reflectable surfaces
-            if (hit.collider.CompareTag("Target"))
-            {
-                StartCoroutine(OnLaserHit(hit));
-            }
+    void OnTargetHit(RaycastHit hit)
+    {
+        targetHit = true;
+
+        // Store the current rotation of the last mirror
+        if (lastMirror != null)
+        {
+            lastMirrorRotationWhenHit = lastMirror.rotation;
+            mirrorRotationFrozen = true;
+        }
+
+        // Visual feedback
+        if (hit.collider.TryGetComponent<Renderer>(out Renderer targetRenderer))
+        {
+            targetRenderer.material.color = hitColor;
+        }
+
+        // Play sound
+        if (targetHitSound != null)
+        {
+            audioSource.PlayOneShot(targetHitSound);
+        }
+
+        // Start scene transition coroutine
+        StartCoroutine(DelayedSceneTransition());
+    }
+
+    IEnumerator DelayedSceneTransition()
+    {
+        yield return new WaitForSeconds(sceneTransitionDelay);
+
+        if (!string.IsNullOrEmpty(nextSceneName))
+        {
+            SceneManager.LoadScene(nextSceneName);
         }
     }
 
@@ -91,24 +139,5 @@ public class RaySystem : MonoBehaviour
     {
         line.positionCount++;
         line.SetPosition(line.positionCount - 1, point);
-    }
-
-    IEnumerator OnLaserHit(RaycastHit hit)
-    {
-        if (hit.collider.TryGetComponent<Renderer>(out Renderer targetRenderer))
-        {
-            targetRenderer.material.color = hitColor;
-        }
-        isHit = true;
-        yield return new WaitForSeconds(transitionDelay);
-        LoadNextScene();
-    }
-
-    void LoadNextScene()
-    {
-        if (!string.IsNullOrEmpty(nextSceneName))
-        {
-            SceneManager.LoadScene(nextSceneName);
-        }
     }
 }
