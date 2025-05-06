@@ -1204,12 +1204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a5c99224f341f6468f2008d529f71dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objects:
-  - {fileID: 1529284096}
-  - {fileID: 1870893250}
-  - {fileID: 1603717942}
-  targetMaterial: {fileID: 2100000, guid: 3147ccd32a1566942aa2637b7cf93ff3, type: 2}
-  delayBetween: 0.5
+  objects: []
+  delayBetween: 0.24
+  wipeDuration: 1
 --- !u!1 &1406150600
 GameObject:
   m_ObjectHideFlags: 0
