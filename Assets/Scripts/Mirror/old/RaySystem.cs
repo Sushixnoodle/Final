@@ -1,20 +1,22 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class RaySystem : MonoBehaviour
 {
-    [Header("Settings")]
+    [Header("Ray Settings")]
     public int maxBounces = 10;
     public float maxDistance = 100f;
-    public LayerMask reflectionLayers = ~0;
-    public float rayOffset = 0.1f;
+    public float rayOffset = 0.01f;
+
+    [Header("Layer Masks")]
+    public LayerMask reflectionLayers; // Layers that reflect the ray (e.g., mirrors)
+    public LayerMask blockingLayers;   // Layers that stop the ray (e.g., walls)
 
     [Header("References")]
     public LineRenderer line;
 
-    [Header("Detection System")]
+    [Header("Target Detection")]
     public string nextSceneName;
     public Color hitColor = Color.green;
     public float transitionDelay = 0.5f;
@@ -25,8 +27,6 @@ public class RaySystem : MonoBehaviour
     {
         if (line == null) line = GetComponent<LineRenderer>();
         line.useWorldSpace = true;
-        // Initialize with minimum positions (2: start and end)
-        line.positionCount = 2;
     }
 
     void Update()
@@ -36,49 +36,61 @@ public class RaySystem : MonoBehaviour
 
     void UpdateLaser()
     {
-        // Start with just start and end points
-        line.positionCount = 2;
+        // Reset line
+        line.positionCount = 1;
         line.SetPosition(0, transform.position);
-        line.SetPosition(1, transform.position + transform.forward * maxDistance);
 
         Vector3 currentPos = transform.position;
         Vector3 currentDir = transform.forward;
         int bounceCount = 0;
 
-        // Temporary list to store all points
-        List<Vector3> points = new List<Vector3>();
-        points.Add(currentPos);
-
-        for (int i = 0; i < maxBounces; i++)
+        while (bounceCount < maxBounces)
         {
-            if (Physics.Raycast(currentPos, currentDir, out RaycastHit hit, maxDistance, reflectionLayers))
-            {
-                points.Add(hit.point);
-                Debug.DrawLine(currentPos, hit.point, Color.green, 0.1f);
+            RaycastHit hit;
+            bool didHit = Physics.Raycast(currentPos, currentDir, out hit, maxDistance, reflectionLayers | blockingLayers);
 
+            if (!didHit)
+            {
+                // No hit - draw ray to max distance
+                AddLinePoint(currentPos + currentDir * maxDistance);
+                break;
+            }
+
+            // Add hit point to line
+            AddLinePoint(hit.point);
+
+            // Check if we hit a blocking layer
+            if (((1 << hit.collider.gameObject.layer) & blockingLayers) != 0)
+            {
+                // Hit a blocking object - stop here
                 if (hit.collider.CompareTag("Target"))
                 {
                     StartCoroutine(OnLaserHit(hit));
                 }
+                break;
+            }
 
+            // Handle reflection
+            if (((1 << hit.collider.gameObject.layer) & reflectionLayers) != 0)
+            {
+                // Reflect off mirror-like surfaces
                 currentPos = hit.point + (hit.normal * rayOffset);
                 currentDir = Vector3.Reflect(currentDir, hit.normal);
                 bounceCount++;
             }
-            else
+
+            // Check for target even on reflectable surfaces
+            if (hit.collider.CompareTag("Target"))
             {
-                points.Add(currentPos + currentDir * maxDistance);
-                Debug.DrawRay(currentPos, currentDir * maxDistance, Color.red, 0.1f);
-                break;
+                StartCoroutine(OnLaserHit(hit));
             }
         }
+    }
 
-        // Apply all points to the LineRenderer
-        line.positionCount = points.Count;
-        for (int i = 0; i < points.Count; i++)
-        {
-            line.SetPosition(i, points[i]);
-        }
+    void AddLinePoint(Vector3 point)
+    {
+        line.positionCount++;
+        line.SetPosition(line.positionCount - 1, point);
     }
 
     IEnumerator OnLaserHit(RaycastHit hit)
@@ -87,25 +99,16 @@ public class RaySystem : MonoBehaviour
         {
             targetRenderer.material.color = hitColor;
         }
-        else
-        {
-            Debug.LogWarning("Target does not have renderer component");
-        }
-
         isHit = true;
         yield return new WaitForSeconds(transitionDelay);
         LoadNextScene();
     }
 
-    private void LoadNextScene()
+    void LoadNextScene()
     {
         if (!string.IsNullOrEmpty(nextSceneName))
         {
             SceneManager.LoadScene(nextSceneName);
-        }
-        else
-        {
-            Debug.LogWarning("Next scene name not specified on LaserTarget");
         }
     }
 }
