@@ -2,34 +2,34 @@ using UnityEngine;
 
 public class CutsceneCameraLook : MonoBehaviour
 {
-    [Header("Camera Settings")]
+    [Header("Look Settings")]
     public float mouseSensitivity = 100f;
-    public Transform playerBody; // The parent object that will rotate horizontally
+    public bool invertY = false;
 
     [Header("Rotation Limits")]
     public bool clampVerticalRotation = true;
     public float minVerticalAngle = -80f;
     public float maxVerticalAngle = 80f;
 
-    private float xRotation = 0f; // Tracks vertical rotation
-    private bool isCutsceneActive = true;
+    private float _xRotation = 0f; // Tracks vertical (up/down) rotation
+    private float _yRotation = 0f; // Tracks horizontal (left/right) rotation
+    private bool _isCutsceneActive = true;
 
     void Start()
     {
-        // Lock and hide cursor during cutscene
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        // Initialize rotation to current orientation
-        xRotation = transform.localEulerAngles.x;
+        // Initialize current rotation
+        Vector3 currentRot = transform.localEulerAngles;
+        _xRotation = currentRot.x;
+        _yRotation = currentRot.y;
     }
 
     void Update()
     {
-        if (isCutsceneActive)
-        {
+        if (_isCutsceneActive)
             HandleCameraRotation();
-        }
     }
 
     private void HandleCameraRotation()
@@ -38,39 +38,30 @@ public class CutsceneCameraLook : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
 
-        // Vertical rotation (up/down) - applied to the camera itself
-        xRotation -= mouseY;
+        // Horizontal rotation (left/right)
+        _yRotation += mouseX;
 
+        // Vertical rotation (up/down)
+        _xRotation += (invertY ? 1 : -1) * mouseY;
+
+        // Clamp vertical angle
         if (clampVerticalRotation)
-        {
-            xRotation = Mathf.Clamp(xRotation, minVerticalAngle, maxVerticalAngle);
-        }
+            _xRotation = Mathf.Clamp(_xRotation, minVerticalAngle, maxVerticalAngle);
 
-        // Apply vertical rotation to camera
-        transform.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
-
-        // Horizontal rotation (left/right) - applied to the player body or camera parent
-        if (playerBody != null)
-        {
-            playerBody.Rotate(Vector3.up * mouseX);
-        }
-        else
-        {
-            // If no player body is assigned, rotate the camera parent instead
-            transform.parent.Rotate(Vector3.up * mouseX);
-        }
+        // Apply rotation to camera
+        transform.localRotation = Quaternion.Euler(_xRotation, _yRotation, 0f);
     }
 
     public void StartCutscene()
     {
-        isCutsceneActive = true;
+        _isCutsceneActive = true;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
     public void EndCutscene()
     {
-        isCutsceneActive = false;
+        _isCutsceneActive = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
