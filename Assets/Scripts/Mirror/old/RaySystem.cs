@@ -1,6 +1,6 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class RaySystem : MonoBehaviour
 {
@@ -19,9 +19,12 @@ public class RaySystem : MonoBehaviour
     public Transform lastMirror; // Drag the last mirror in inspector to freeze its rotation
 
     [Header("Target Settings")]
-    public string nextSceneName;
     public Color hitColor = Color.green;
-    public float sceneTransitionDelay = 3f; // 3 second delay after hit
+    public float activationDelay = 3f; // 3 second delay after hit
+
+    [Header("Objects to Enable")]
+    public GameObject[] objectsToEnable; // Assign 3 objects in inspector
+    public GameObject textPrompt; // Assign text prompt in inspector
 
     private AudioSource audioSource;
     private bool targetHit = false;
@@ -35,6 +38,17 @@ public class RaySystem : MonoBehaviour
 
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
+
+        // Ensure objects start disabled
+        if (objectsToEnable != null)
+        {
+            foreach (GameObject obj in objectsToEnable)
+            {
+                if (obj != null) obj.SetActive(false);
+            }
+        }
+
+        if (textPrompt != null) textPrompt.SetActive(false);
     }
 
     void Update()
@@ -121,18 +135,25 @@ public class RaySystem : MonoBehaviour
             audioSource.PlayOneShot(targetHitSound);
         }
 
-        // Start scene transition coroutine
-        StartCoroutine(DelayedSceneTransition());
+        // Start activation coroutine
+        StartCoroutine(DelayedActivation());
     }
 
-    IEnumerator DelayedSceneTransition()
+    IEnumerator DelayedActivation()
     {
-        yield return new WaitForSeconds(sceneTransitionDelay);
+        yield return new WaitForSeconds(activationDelay);
 
-        if (!string.IsNullOrEmpty(nextSceneName))
+        // Enable all assigned objects
+        if (objectsToEnable != null)
         {
-            SceneManager.LoadScene(nextSceneName);
+            foreach (GameObject obj in objectsToEnable)
+            {
+                if (obj != null) obj.SetActive(true);
+            }
         }
+
+        // Enable text prompt
+        if (textPrompt != null) textPrompt.SetActive(true);
     }
 
     void AddLinePoint(Vector3 point)
