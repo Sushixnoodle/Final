@@ -19,21 +19,88 @@ MonoBehaviour:
     nextLines: 
     nextLineIndex: 1
     voiceClip: {fileID: 8300000, guid: bf542cb18c03f2e47ac23cfae945fca0, type: 3}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: Red
     choices: []
     nextLines: 
     nextLineIndex: 2
     voiceClip: {fileID: 8300000, guid: f85b7fa25d7e6434dbef5c1a81307c07, type: 3}
+    useCustomColor: 1
+    customColor: {r: 0.7735849, g: 0, b: 0, a: 1}
   - speakerName: Lord
     dialogueText: Blue
     choices: []
     nextLines: 
     nextLineIndex: 3
     voiceClip: {fileID: 0}
+    useCustomColor: 1
+    customColor: {r: 0, g: 0.78409, b: 0.9245283, a: 1}
   - speakerName: Lord
     dialogueText: Yellow
     choices: []
     nextLines: 
-    nextLineIndex: -1
+    nextLineIndex: 4
     voiceClip: {fileID: 0}
+    useCustomColor: 1
+    customColor: {r: 0.915247, g: 0.9528302, b: 0, a: 1}
+  - speakerName: Lord
+    dialogueText: I really thought they were myths.
+    choices: []
+    nextLines: 
+    nextLineIndex: 5
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
+  - speakerName: Lord
+    dialogueText: This was definitiely you.
+    choices:
+    - How can you tell?
+    nextLines: 06000000
+    nextLineIndex: 6
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
+  - speakerName: Lord
+    dialogueText: I can tell because... you are MY son.
+    choices: []
+    nextLines: 
+    nextLineIndex: 7
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
+  - speakerName: Lord
+    dialogueText: Well done son... I am proud of you.
+    choices: []
+    nextLines: 
+    nextLineIndex: 8
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
+  - speakerName: Lord
+    dialogueText: This is your next mission.
+    choices: []
+    nextLines: 
+    nextLineIndex: 9
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
+  - speakerName: Lord
+    dialogueText: Continue this and work on merging these colours next.
+    choices:
+    - I'll be on it!
+    nextLines: 
+    nextLineIndex: 10
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
+  - speakerName: Lord
+    dialogueText: I cannot wait to see what you can do!
+    choices:
+    - I'll be on it!
+    nextLines: 
+    nextLineIndex: -10
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}

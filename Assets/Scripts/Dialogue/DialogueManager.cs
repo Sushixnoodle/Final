@@ -55,14 +55,12 @@ public class DialogueManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            // If text is still animating, complete it instantly
             if (isTyping)
             {
                 CompleteTextAnimation();
                 return;
             }
 
-            // If we were waiting for a click and no choices are shown, skip to next line
             if (isWaitingForClick)
             {
                 DialogueLine line = currentDialogue.dialogueLines[currentLineIndex];
@@ -72,7 +70,7 @@ public class DialogueManager : MonoBehaviour
                     if (line.nextLineIndex >= 0 && line.nextLineIndex < currentDialogue.dialogueLines.Length)
                     {
                         currentLineIndex = line.nextLineIndex;
-                        isWaitingForClick = false; // reset flag
+                        isWaitingForClick = false;
                         ShowDialogueLine();
                     }
                     else
@@ -83,7 +81,6 @@ public class DialogueManager : MonoBehaviour
             }
         }
     }
-
 
     private void ShowDialogueLine()
     {
@@ -98,6 +95,16 @@ public class DialogueManager : MonoBehaviour
         if (speakerNameText != null)
         {
             speakerNameText.text = line.speakerName;
+        }
+
+        // Set dialogue text color based on custom color setting
+        if (line.useCustomColor)
+        {
+            dialogueText.color = line.customColor;
+        }
+        else
+        {
+            dialogueText.color = Color.white; // Default color
         }
 
         if (typingCoroutine != null)
@@ -115,7 +122,7 @@ public class DialogueManager : MonoBehaviour
             isTyping = false;
         }
 
-        // Stop the previous clip (if it's still playing)
+        // Stop previous voice clip
         if (voiceClipPlayer != null)
         {
             Destroy(voiceClipPlayer);
@@ -128,9 +135,8 @@ public class DialogueManager : MonoBehaviour
             audioSource.clip = line.voiceClip;
             audioSource.Play();
 
-            Destroy(voiceClipPlayer, line.voiceClip.length + 0.1f); // Clean up after playing
+            Destroy(voiceClipPlayer, line.voiceClip.length + 0.1f);
         }
-
 
         // Hide buttons by default
         if (choiceButton1 != null) choiceButton1.gameObject.SetActive(false);
@@ -184,6 +190,17 @@ public class DialogueManager : MonoBehaviour
         }
 
         DialogueLine line = currentDialogue.dialogueLines[currentLineIndex];
+
+        // Make sure color is applied here as well
+        if (line.useCustomColor)
+        {
+            dialogueText.color = line.customColor;
+        }
+        else
+        {
+            dialogueText.color = Color.white;
+        }
+
         dialogueText.text = line.dialogueText;
         isTyping = false;
     }
