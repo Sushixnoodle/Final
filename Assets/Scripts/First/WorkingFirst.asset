@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueLines:
   - speakerName: Lord
-    dialogueText: 'I wonder why I still have a pitiful son like you '
+    dialogueText: 'I wonder why I still have a pitiful son like you. '
     choices: []
     nextLines: 
     nextLineIndex: 1
@@ -24,19 +24,19 @@ MonoBehaviour:
     nextLines: 
     nextLineIndex: 2
   - speakerName: Lord
-    dialogueText: You have no use to me
+    dialogueText: You have no use to me.
     choices: []
     nextLines: 
     nextLineIndex: 3
   - speakerName: Lord
     dialogueText: Go to bed.
     choices:
-    - Yes Father
-    - Eye rolls
+    - Yes Father.
+    - Eye rolls.
     nextLines: ffffffff04000000
     nextLineIndex: 0
   - speakerName: Lord
-    dialogueText: DO NOT ROLL YOUR EYES AT ME
+    dialogueText: DO NOT ROLL YOUR EYES AT ME!
     choices: []
     nextLines: 
     nextLineIndex: 5

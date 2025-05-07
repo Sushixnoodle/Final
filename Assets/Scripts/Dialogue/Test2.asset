@@ -20,14 +20,14 @@ MonoBehaviour:
     nextLines: 01000000
     nextLineIndex: -1
   - speakerName: Lord
-    dialogueText: Is this COLOUR!?!? I see
+    dialogueText: Is this COLOUR!?!? I see!?
     choices:
     - I think so.
     - Well what do you think.
     nextLines: 0200000003000000
     nextLineIndex: -1
   - speakerName: Lord
-    dialogueText: For a long time I had thought colours were rumours
+    dialogueText: For a long time I had thought colours were rumours.
     choices: []
     nextLines: 04000000
     nextLineIndex: 4
@@ -37,12 +37,12 @@ MonoBehaviour:
     nextLines: 05000000
     nextLineIndex: 5
   - speakerName: Lord
-    dialogueText: And now I am starting to see the world in a different light
+    dialogueText: And now I am starting to see the world in a different light.
     choices: []
     nextLines: 07000000
     nextLineIndex: 7
   - speakerName: Lord
-    dialogueText: Let us put your horrible attitude to the side
+    dialogueText: Let us put your horrible attitude to the side.
     choices:
     - I wonder where I get it from.
     - Is there something you need to say to me?
@@ -94,7 +94,7 @@ MonoBehaviour:
     nextLines: 
     nextLineIndex: 14
   - speakerName: Lord
-    dialogueText: Also I heard some noise in the pipe systems did you
+    dialogueText: On another note, I heard some noise in the pipe systems did you.
     choices:
     - ???
     - Maybe it was the result of you using the bathroom.
