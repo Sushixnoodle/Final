@@ -14,17 +14,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dialogueLines:
   - speakerName: Lord
-    dialogueText: 'All the colours '
+    dialogueText: All the colours...
     choices: []
     nextLines: 
     nextLineIndex: 1
+    voiceClip: {fileID: 8300000, guid: bf542cb18c03f2e47ac23cfae945fca0, type: 3}
   - speakerName: Lord
-    dialogueText: 
+    dialogueText: Red
     choices: []
     nextLines: 
     nextLineIndex: 2
+    voiceClip: {fileID: 8300000, guid: f85b7fa25d7e6434dbef5c1a81307c07, type: 3}
   - speakerName: Lord
-    dialogueText: 
+    dialogueText: Blue
     choices: []
     nextLines: 
     nextLineIndex: 3
+    voiceClip: {fileID: 0}
+  - speakerName: Lord
+    dialogueText: Yellow
+    choices: []
+    nextLines: 
+    nextLineIndex: -1
+    voiceClip: {fileID: 0}

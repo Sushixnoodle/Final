@@ -25,6 +25,8 @@ public class DialogueManager : MonoBehaviour
     private Coroutine typingCoroutine;
     private bool isTyping = false;
 
+    private GameObject voiceClipPlayer;
+
     public void StartDialogue(Dialogue dialogue)
     {
         if (dialogue == null)
@@ -51,31 +53,37 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if (isWaitingForClick && Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
-            DialogueLine line = currentDialogue.dialogueLines[currentLineIndex];
-
-            // If text is still typing, complete it immediately
+            // If text is still animating, complete it instantly
             if (isTyping)
             {
                 CompleteTextAnimation();
                 return;
             }
 
-            if (line.choices == null || line.choices.Length == 0)
+            // If we were waiting for a click and no choices are shown, skip to next line
+            if (isWaitingForClick)
             {
-                if (line.nextLineIndex >= 0 && line.nextLineIndex < currentDialogue.dialogueLines.Length)
+                DialogueLine line = currentDialogue.dialogueLines[currentLineIndex];
+
+                if (line.choices == null || line.choices.Length == 0)
                 {
-                    currentLineIndex = line.nextLineIndex;
-                    ShowDialogueLine();
-                }
-                else
-                {
-                    EndDialogue();
+                    if (line.nextLineIndex >= 0 && line.nextLineIndex < currentDialogue.dialogueLines.Length)
+                    {
+                        currentLineIndex = line.nextLineIndex;
+                        isWaitingForClick = false; // reset flag
+                        ShowDialogueLine();
+                    }
+                    else
+                    {
+                        EndDialogue();
+                    }
                 }
             }
         }
     }
+
 
     private void ShowDialogueLine()
     {
@@ -92,31 +100,43 @@ public class DialogueManager : MonoBehaviour
             speakerNameText.text = line.speakerName;
         }
 
-        if (dialogueText != null)
+        if (typingCoroutine != null)
         {
-            // Stop any ongoing typing animation
-            if (typingCoroutine != null)
-            {
-                StopCoroutine(typingCoroutine);
-            }
-
-            // Either animate the text or show it immediately
-            if (animateText)
-            {
-                typingCoroutine = StartCoroutine(TypeText(line.dialogueText));
-            }
-            else
-            {
-                dialogueText.text = line.dialogueText;
-                isTyping = false;
-            }
+            StopCoroutine(typingCoroutine);
         }
 
-        // Hide choice buttons by default
+        if (animateText)
+        {
+            typingCoroutine = StartCoroutine(TypeText(line.dialogueText));
+        }
+        else
+        {
+            dialogueText.text = line.dialogueText;
+            isTyping = false;
+        }
+
+        // Stop the previous clip (if it's still playing)
+        if (voiceClipPlayer != null)
+        {
+            Destroy(voiceClipPlayer);
+        }
+
+        if (line.voiceClip != null)
+        {
+            voiceClipPlayer = new GameObject("TempVoicePlayer");
+            var audioSource = voiceClipPlayer.AddComponent<AudioSource>();
+            audioSource.clip = line.voiceClip;
+            audioSource.Play();
+
+            Destroy(voiceClipPlayer, line.voiceClip.length + 0.1f); // Clean up after playing
+        }
+
+
+        // Hide buttons by default
         if (choiceButton1 != null) choiceButton1.gameObject.SetActive(false);
         if (choiceButton2 != null) choiceButton2.gameObject.SetActive(false);
 
-        // Show choices if they exist
+        // Show choices if available
         if (line.choices != null && line.choices.Length > 0)
         {
             SetupChoiceButton(choiceButton1, 0, line);
@@ -137,7 +157,7 @@ public class DialogueManager : MonoBehaviour
             if (buttonText != null) buttonText.text = line.choices[choiceIndex];
 
             button.onClick.RemoveAllListeners();
-            int index = choiceIndex; // Local copy for closure
+            int index = choiceIndex;
             button.onClick.AddListener(() => OnChoiceSelected(index));
         }
     }
@@ -186,7 +206,11 @@ public class DialogueManager : MonoBehaviour
 
     private void EndDialogue()
     {
-        if (dialoguePanel != null) dialoguePanel.SetActive(false);
+        if (dialoguePanel != null)
+        {
+            dialoguePanel.SetActive(false);
+        }
+
         GoToNextScene();
     }
 
