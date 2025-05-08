@@ -29,7 +29,7 @@ MonoBehaviour:
     - Well what do you think.
     nextLines: 0200000003000000
     nextLineIndex: -1
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 413c499f870f7d64e8f63a8c19bcf076, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -37,7 +37,7 @@ MonoBehaviour:
     choices: []
     nextLines: 04000000
     nextLineIndex: 4
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 0b33caf6af4508344b9b3488d5509113, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -45,7 +45,7 @@ MonoBehaviour:
     choices: []
     nextLines: 05000000
     nextLineIndex: 5
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: fdea76ec44bdd374a955ff58265507aa, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -53,7 +53,7 @@ MonoBehaviour:
     choices: []
     nextLines: 07000000
     nextLineIndex: 7
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 5fc0ac1ceccadfe48a37fbd1a37ee6c8, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -63,7 +63,7 @@ MonoBehaviour:
     - Is there something you need to say to me?
     nextLines: 0600000002000000
     nextLineIndex: -1
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 97867ad3c25b48343b1b5c3e32cfa29f, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -71,7 +71,7 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: 2
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: e64cbdec15c227945ac7e0d7a98f0613, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Your own thoughts
@@ -79,7 +79,7 @@ MonoBehaviour:
     choices: []
     nextLines: 08000000
     nextLineIndex: 8
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 37c2cccb26cc4fb47a9559406646bda8, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -89,7 +89,7 @@ MonoBehaviour:
     - ...
     nextLines: 090000000a000000
     nextLineIndex: -1
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 9a1e2ce197ab69f48aa6601b749338d1, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -97,7 +97,7 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: 11
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: ae038f0f309376944b474293b9c0de3b, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -107,7 +107,7 @@ MonoBehaviour:
     - No.
     nextLines: 090000000c000000
     nextLineIndex: -1
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 797337f940b89a141956f5468fa9e22a, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -115,7 +115,7 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: 13
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 608a3f02d700ddb498f4ac638f61705e, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -132,7 +132,7 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: 14
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: ef0ef33ade12f6a4a9065234dc46177f, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -142,7 +142,7 @@ MonoBehaviour:
     - Maybe it was the result of you using the bathroom.
     nextLines: 0f00000010000000
     nextLineIndex: -1
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 915aaf309a1bd114b950389f53f7b023, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -150,7 +150,7 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: -1
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 5f60a807c11d074408bed0311a424c95, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -158,6 +158,6 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: -1
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 89a66e624f121114393a187003d39fb5, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
