@@ -23,7 +23,9 @@ public class RaySystem : MonoBehaviour
     public float activationDelay = 3f; // 3 second delay after hit
 
     [Header("Objects to Enable")]
-    public GameObject[] objectsToEnable; // Assign 3 objects in inspector
+    public GameObject[] objectsToEnable; // Assign objects in inspector
+    [Header("Objects to Disable")]
+    public GameObject[] objectsToDisable; // Assign objects in inspector
     public GameObject textPrompt; // Assign text prompt in inspector
 
     private AudioSource audioSource;
@@ -39,12 +41,20 @@ public class RaySystem : MonoBehaviour
         audioSource = gameObject.AddComponent<AudioSource>();
         audioSource.playOnAwake = false;
 
-        // Ensure objects start disabled
+        // Ensure objects start in their correct states
         if (objectsToEnable != null)
         {
             foreach (GameObject obj in objectsToEnable)
             {
                 if (obj != null) obj.SetActive(false);
+            }
+        }
+
+        if (objectsToDisable != null)
+        {
+            foreach (GameObject obj in objectsToDisable)
+            {
+                if (obj != null) obj.SetActive(true);
             }
         }
 
@@ -149,6 +159,15 @@ public class RaySystem : MonoBehaviour
             foreach (GameObject obj in objectsToEnable)
             {
                 if (obj != null) obj.SetActive(true);
+            }
+        }
+
+        // Disable all assigned objects
+        if (objectsToDisable != null)
+        {
+            foreach (GameObject obj in objectsToDisable)
+            {
+                if (obj != null) obj.SetActive(false);
             }
         }
 

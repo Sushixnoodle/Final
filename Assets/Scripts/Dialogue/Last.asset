@@ -90,7 +90,7 @@ MonoBehaviour:
     dialogueText: Continue this and work on merging these colours next.
     choices:
     - I'll be on it!
-    nextLines: 
+    nextLines: 0a000000
     nextLineIndex: 10
     voiceClip: {fileID: 0}
     useCustomColor: 0
@@ -99,8 +99,16 @@ MonoBehaviour:
     dialogueText: I cannot wait to see what you can do!
     choices:
     - I'll be on it!
-    nextLines: 
-    nextLineIndex: -10
+    nextLines: 0b000000
+    nextLineIndex: 11
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
+  - speakerName: Lord
+    dialogueText: Off you go.
+    choices: []
+    nextLines: 0b000000
+    nextLineIndex: -1
     voiceClip: {fileID: 0}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
