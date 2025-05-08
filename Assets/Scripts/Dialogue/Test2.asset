@@ -19,6 +19,9 @@ MonoBehaviour:
     - Yes father.
     nextLines: 01000000
     nextLineIndex: -1
+    voiceClip: {fileID: 8300000, guid: 4c7260f4eb7332849b71b3588641112e, type: 3}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: Is this COLOUR!?!? I see!?
     choices:
@@ -26,21 +29,33 @@ MonoBehaviour:
     - Well what do you think.
     nextLines: 0200000003000000
     nextLineIndex: -1
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: For a long time I had thought colours were rumours.
     choices: []
     nextLines: 04000000
     nextLineIndex: 4
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: DO NOT SPEAK TO YOUR FATHER LIKE THAT!
     choices: []
     nextLines: 05000000
     nextLineIndex: 5
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: And now I am starting to see the world in a different light.
     choices: []
     nextLines: 07000000
     nextLineIndex: 7
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: Let us put your horrible attitude to the side.
     choices:
@@ -48,16 +63,25 @@ MonoBehaviour:
     - Is there something you need to say to me?
     nextLines: 0600000002000000
     nextLineIndex: -1
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: STOP THIS RIGHT NOW....... as I was saying.
     choices: []
     nextLines: 
     nextLineIndex: 2
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Your own thoughts
     dialogueText: These colours seem to be making my father nicer.
     choices: []
     nextLines: 08000000
     nextLineIndex: 8
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: I wonder what has caused this.
     choices:
@@ -65,11 +89,17 @@ MonoBehaviour:
     - ...
     nextLines: 090000000a000000
     nextLineIndex: -1
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: It was YOU?!
     choices: []
     nextLines: 
     nextLineIndex: 11
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: Was it you?
     choices:
@@ -77,22 +107,34 @@ MonoBehaviour:
     - No.
     nextLines: 090000000c000000
     nextLineIndex: -1
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: For once you are doing a good job.
     choices: []
     nextLines: 
     nextLineIndex: 13
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: '[Scoffs]... yeah it could never be you. If it was I could proud
       of you for once.'
     choices: []
     nextLines: 
     nextLineIndex: 13
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Your own thoughts
     dialogueText: Im determined to help my father and recover our relationship.
     choices: []
     nextLines: 
     nextLineIndex: 14
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: On another note, I heard some noise in the pipe systems did you.
     choices:
@@ -100,13 +142,22 @@ MonoBehaviour:
     - Maybe it was the result of you using the bathroom.
     nextLines: 0f00000010000000
     nextLineIndex: -1
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: Yeah something might be going on there...
     choices: []
     nextLines: 
     nextLineIndex: -1
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: GET OUT OF MY SIGHT!!!
     choices: []
     nextLines: 
     nextLineIndex: -1
+    voiceClip: {fileID: 0}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
