@@ -4,23 +4,29 @@ using UnityEngine.EventSystems;
 
 public class PanelToggleController : MonoBehaviour
 {
-    public GameObject panel;     // The panel to open/close
-    public Button openButton;    // Button to open the panel
+    [Header("UI References")]
+    public GameObject panel;         // The panel to open/close
+    public Button openButton;        // Button to open the panel
+    public Button closeButton;       // Button to close the panel (drag this in inspector)
 
     private bool isPanelOpen = false;
 
     void Start()
     {
-        panel.SetActive(false); // Make sure panel starts closed
+        // Initialize panel state
+        panel.SetActive(false);
+
+        // Set up button listeners
         openButton.onClick.AddListener(OpenPanel);
+        closeButton.onClick.AddListener(ClosePanel);
     }
 
     void Update()
     {
+        // Close panel when clicking outside (optional)
         if (isPanelOpen && Input.GetMouseButtonDown(0))
         {
-            // Check if the click was not on a UI element (e.g. not the panel itself)
-            if (!EventSystem.current.IsPointerOverGameObject())
+            if (!IsPointerOverUIElement())
             {
                 ClosePanel();
             }
@@ -33,11 +39,21 @@ public class PanelToggleController : MonoBehaviour
         isPanelOpen = true;
     }
 
-    void ClosePanel()
+    public void ClosePanel() // Made public so button can call it
     {
         panel.SetActive(false);
         isPanelOpen = false;
     }
+
+    // Helper method to check if pointer is over any UI element
+    private bool IsPointerOverUIElement()
+    {
+        PointerEventData eventData = new PointerEventData(EventSystem.current);
+        eventData.position = Input.mousePosition;
+
+        var results = new System.Collections.Generic.List<RaycastResult>();
+        EventSystem.current.RaycastAll(eventData, results);
+
+        return results.Count > 0;
+    }
 }
-
-
