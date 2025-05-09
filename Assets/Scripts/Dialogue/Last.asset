@@ -18,7 +18,7 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: 1
-    voiceClip: {fileID: 8300000, guid: bf542cb18c03f2e47ac23cfae945fca0, type: 3}
+    voiceClip: {fileID: 8300000, guid: f1c0288e6c06169418070d005be0b61e, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -26,7 +26,7 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: 2
-    voiceClip: {fileID: 8300000, guid: f85b7fa25d7e6434dbef5c1a81307c07, type: 3}
+    voiceClip: {fileID: 8300000, guid: a57a9b7b2c99e40488c7fa41dcfcdd1d, type: 3}
     useCustomColor: 1
     customColor: {r: 0.7735849, g: 0, b: 0, a: 1}
   - speakerName: Lord
@@ -34,7 +34,7 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: 3
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: d896867be7a41d546b04e563b6f5a0bc, type: 3}
     useCustomColor: 1
     customColor: {r: 0, g: 0.78409, b: 0.9245283, a: 1}
   - speakerName: Lord
@@ -42,7 +42,7 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: 4
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: b740627d417dd484e9abb01f289313f6, type: 3}
     useCustomColor: 1
     customColor: {r: 0.915247, g: 0.9528302, b: 0, a: 1}
   - speakerName: Lord
@@ -50,7 +50,7 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: 5
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 9669c50ad2a281141a2872fd114bd92c, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -59,7 +59,7 @@ MonoBehaviour:
     - How can you tell?
     nextLines: 06000000
     nextLineIndex: 6
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 46d3d0711d2eef44b89ffeca90fb32c6, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -67,7 +67,7 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: 7
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: e2668c61f8d83644dad5e4a9a4c44f84, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -75,7 +75,7 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: 8
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 43cb6aa267571b44ea33c4343dcdb222, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -83,7 +83,7 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: 9
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 661752883e6408844958ad88759486b0, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -92,7 +92,7 @@ MonoBehaviour:
     - I'll be on it!
     nextLines: 0a000000
     nextLineIndex: 10
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 95eb4a21fd2060b43bd0e21fc89b2920, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -101,7 +101,7 @@ MonoBehaviour:
     - I'll be on it!
     nextLines: 0b000000
     nextLineIndex: 11
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: 0a97189e32515a546a76894b7b35bba8, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
@@ -109,6 +109,6 @@ MonoBehaviour:
     choices: []
     nextLines: 0b000000
     nextLineIndex: -1
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: cef03049b90b7544983c7e2976c37e82, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}

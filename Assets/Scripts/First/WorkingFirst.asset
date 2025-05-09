@@ -18,16 +18,25 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: 1
+    voiceClip: {fileID: 8300000, guid: b9bcd0b275cc4e84fbd2fea537aff818, type: 3}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: Anyways everything is all wrapped up now...
     choices: []
     nextLines: 
     nextLineIndex: 2
+    voiceClip: {fileID: 8300000, guid: 7c10a4bb757cd8243b76eaf99a872258, type: 3}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: You have no use to me.
     choices: []
     nextLines: 
     nextLineIndex: 3
+    voiceClip: {fileID: 8300000, guid: 6a79b8864ea52ae4ca17f824726db26d, type: 3}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: Go to bed.
     choices:
@@ -35,13 +44,22 @@ MonoBehaviour:
     - Eye rolls.
     nextLines: ffffffff04000000
     nextLineIndex: 0
+    voiceClip: {fileID: 8300000, guid: 8048600e9a1e6da44bc4bb2c52a2da70, type: 3}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: DO NOT ROLL YOUR EYES AT ME!
     choices: []
     nextLines: 
     nextLineIndex: 5
+    voiceClip: {fileID: 8300000, guid: b614f59dfcc2b3147bc6e454b1d255fe, type: 3}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: Off you go.
     choices: []
     nextLines: 
     nextLineIndex: -1
+    voiceClip: {fileID: 8300000, guid: cef03049b90b7544983c7e2976c37e82, type: 3}
+    useCustomColor: 0
+    customColor: {r: 1, g: 1, b: 1, a: 1}
