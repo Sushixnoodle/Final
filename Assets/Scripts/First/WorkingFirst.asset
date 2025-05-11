@@ -18,7 +18,7 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: 1
-    voiceClip: {fileID: 8300000, guid: b9bcd0b275cc4e84fbd2fea537aff818, type: 3}
+    voiceClip: {fileID: 8300000, guid: 90acca85cb6c689479187883f5ddf96c, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord

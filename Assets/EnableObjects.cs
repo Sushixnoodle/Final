@@ -1,27 +1,33 @@
 using UnityEngine;
 
-public class EnableDisableObjects : MonoBehaviour
+public class ObjectController : MonoBehaviour
 {
-    public GameObject objectA; // Reference to GameObject A
-    public GameObject objectB; // Will be enabled when A is enabled
-    public GameObject objectC; // Will be disabled when A is enabled
+    [Header("References")]
+    public GameObject objectA;  // The trigger object (optional if script is on A)
+    public GameObject objectB;  // Enable this when A is enabled
+    public GameObject objectC;  // Disable this when A is enabled
+    public GameObject objectD;  // Destroy this when A is enabled
+    public GameObject objectE;  // Also destroy this when A is enabled
+
+    private void Start()
+    {
+        // If objectA is not assigned, assume this script is on A
+        if (objectA == null) objectA = gameObject;
+    }
 
     private void OnEnable()
     {
-        if (objectA != null && objectA.activeSelf)
-        {
-            if (objectB != null) objectB.SetActive(true);
-            if (objectC != null) objectC.SetActive(false);
-        }
+        if (objectB != null) objectB.SetActive(true);   // Enable B
+        if (objectC != null) objectC.SetActive(false);  // Disable C
+        if (objectD != null) Destroy(objectD);          // Destroy D
+        if (objectE != null) Destroy(objectE);          // Destroy E
     }
 
-    private void Update()
+    // Optional: Reset behavior if A is disabled
+    private void OnDisable()
     {
-        // Optional: Continuously sync if A's state changes at runtime
-        if (objectA != null && objectA.activeSelf)
-        {
-            if (objectB != null && !objectB.activeSelf) objectB.SetActive(true);
-            if (objectC != null && objectC.activeSelf) objectC.SetActive(false);
-        }
+        if (objectB != null) objectB.SetActive(false);
+        if (objectC != null) objectC.SetActive(true);
+        // Note: D and E are permanently destroyed and cannot be restored
     }
 }

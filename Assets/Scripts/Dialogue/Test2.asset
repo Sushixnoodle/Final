@@ -136,7 +136,8 @@ MonoBehaviour:
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
-    dialogueText: On another note, I heard some noise in the pipe systems did you.
+    dialogueText: On another note, I heard some noise in the pipes section in the
+      manor, did you.
     choices:
     - ???
     - Maybe it was the result of you using the bathroom.
@@ -158,6 +159,6 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: -1
-    voiceClip: {fileID: 8300000, guid: 89a66e624f121114393a187003d39fb5, type: 3}
+    voiceClip: {fileID: 8300000, guid: 380e981ec686ed34a8dcf7e32a89027a, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
