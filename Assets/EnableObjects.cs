@@ -1,29 +1,27 @@
 using UnityEngine;
 
-public class EnableObjects : MonoBehaviour
+public class EnableDisableObjects : MonoBehaviour
 {
     public GameObject objectA; // Reference to GameObject A
-    public GameObject objectB; // Reference to GameObject B
+    public GameObject objectB; // Will be enabled when A is enabled
+    public GameObject objectC; // Will be disabled when A is enabled
 
     private void OnEnable()
     {
-        // When this script's GameObject is enabled
-        if (objectA != null && objectB != null)
+        if (objectA != null && objectA.activeSelf)
         {
-            // Enable objectB when objectA is enabled
-            objectB.SetActive(objectA.activeSelf);
+            if (objectB != null) objectB.SetActive(true);
+            if (objectC != null) objectC.SetActive(false);
         }
     }
 
     private void Update()
     {
-        // Continuously check if objectA is enabled/disabled (optional)
-        if (objectA != null && objectB != null)
+        // Optional: Continuously sync if A's state changes at runtime
+        if (objectA != null && objectA.activeSelf)
         {
-            if (objectB.activeSelf != objectA.activeSelf)
-            {
-                objectB.SetActive(objectA.activeSelf);
-            }
+            if (objectB != null && !objectB.activeSelf) objectB.SetActive(true);
+            if (objectC != null && objectC.activeSelf) objectC.SetActive(false);
         }
     }
 }
