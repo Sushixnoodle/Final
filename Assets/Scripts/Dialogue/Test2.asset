@@ -124,7 +124,7 @@ MonoBehaviour:
     choices: []
     nextLines: 
     nextLineIndex: 13
-    voiceClip: {fileID: 0}
+    voiceClip: {fileID: 8300000, guid: e0575baa234fadf43b2c41a298cda7e4, type: 3}
     useCustomColor: 0
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Your own thoughts
