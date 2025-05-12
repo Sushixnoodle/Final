@@ -137,7 +137,7 @@ MonoBehaviour:
     customColor: {r: 1, g: 1, b: 1, a: 1}
   - speakerName: Lord
     dialogueText: On another note, I heard some noise in the pipes section in the
-      manor, did you.
+      manor, did you?
     choices:
     - ???
     - Maybe it was the result of you using the bathroom.
